@@ -1,0 +1,97 @@
+{
+  "lunchoption" : [
+		"Ami Sushi",
+		"Artisano",
+		"Chef's Door",
+		"Chorizo",
+		"Cora's",
+		"Denny's",
+		"Fantastico",
+		"Habanero Taqueria",
+		"Kelsey's",
+		"King's Arms",
+		"Kori's Roti",
+		"Little Tokyo",
+		"Mall",
+		"McDonald's",
+		"Monaghan's",
+		"Montfort",
+		"Niblick",
+		"Panzerotto",
+		"Philthy McNasty's",
+		"Pitas &amp; Burritos",
+		"Queen's Head",
+		"South St. Burger Co.",
+		"Spoon &amp; Fork",
+		"Stoney's",
+		"Subway",
+		"Sunset Grill",
+		"Swiss Chalet",
+		"Taco Bell",
+		"Thai Satay",
+		"Tim Horton's",
+		"Wasabi Teriyaki",
+		"Wild Wings",
+		"Whole Foods"
+	],
+  "category" : [
+		{
+			"name" : "All",
+			"members" : null
+		},
+		{
+			"name" : "Patio",
+			"members" : [
+				"Niblick",
+				"Monaghan's",
+				"King's Arms",
+				"Kelsey's",
+				"Philthy McNasty's",
+				"Montfort",
+				"Artisano",
+				"Whole Foods",
+				"South St. Burger Co."
+			]
+		},
+		{
+			"name" : "Beer",
+			"members" : [
+				"Niblick",
+				"Monaghan's",
+				"King's Arms",
+				"Kelsey's",
+				"Philthy McNasty's",
+				"Montfort",
+				"Artisano",
+				"Queen's Head",
+				"Swiss Chalet",
+				"Ami Sushi",
+				"Thai Satay",
+				"Spoon &amp; Fork",
+				"Wild Wings"
+			]
+		},
+		{
+			"name" : "Walking distance",
+			"members" : [
+				"Ami Sushi",
+				"Swiss Chalet",
+				"Sunset Grill",
+				"Denny's",
+				"McDonald's",
+				"Tim Horton's",
+				"Chef's Door",
+				"Subway",
+				"Taco Bell",
+				"Wasabi Teriyaki",
+				"Mall",
+				"Whole Foods",
+				"Thai Satay"
+			]
+		},
+		{
+			"name" : "Clear",
+			"members" : []
+		}
+	]
+}
