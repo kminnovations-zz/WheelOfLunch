@@ -1,0 +1,106 @@
+body, p {
+	font-family: arial;
+}
+
+h1 {
+	font-family: Times New Roman;
+}
+
+h2 {
+	background-color: #f7f7f7;
+	text-align: left;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	padding: 4px;
+	border-top: solid 1px #999999;
+	border-bottom: solid 1px #999999;
+	clear: both;
+	font-family: Times New Roman;
+	font-size: 20px;
+}
+
+.optioncontainer {
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.option {
+	width: 120px;
+	height: 60px;
+	float: left;
+	border: solid 1px #999999;
+	padding: 4px;
+	margin: 2px;
+	background-color: #fbfbfb;
+}
+
+.selected {
+	background-color: yellow;
+}
+
+.jSlots-wrapper {
+	overflow: hidden; /* to hide the magic */
+	height: 20px; /* whatever the height of your list items are */
+	display: inline-block; /* to size width correctly, can use float too, or width*/
+	border: 1px solid #999;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.fancy .jSlots-wrapper {
+	overflow: hidden;
+	height: 100px;
+	display: inline-block; /* to size correctly, can use float too, or width */
+	width: 100%;
+	background-color: #f7f7f7;
+}
+
+.fancy .wheel li {
+	line-height: 100px;
+	text-align: center;
+	font-size: 50px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+	font-family: 'Gravitas One', serif;
+	border-left: 1px solid #999;
+}
+
+/*
+.fancy .wheel:first-child li {
+	border-left: none;
+}
+
+.fancy .wheel li:nth-child(7) {
+	background-color: #FFCE29;
+}
+.fancy .wheel li:nth-child(6) {
+	background-color: #FFA22B;
+}
+.fancy .wheel li:nth-child(5) {
+	background-color: #FF8645;
+}
+.fancy .wheel li:nth-child(4) {
+	background-color: #FF6D3F;
+}
+.fancy .wheel li:nth-child(3) {
+	background-color: #FF494C;
+}
+.fancy .wheel li:nth-child(2) {
+	background-color: #FF3333;
+}
+.fancy .wheel li:nth-child(1),
+.fancy .wheel li:nth-child(8) {
+	background-color: #FF0000;
+}
+
+.fancy .wheel li span {
+	display: block;
+}
+.wheel {
+	float: left;
+}
+*/
