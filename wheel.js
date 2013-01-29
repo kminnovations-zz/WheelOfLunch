@@ -8,7 +8,7 @@ function Wheel(containerId, restaurants, settings) {
 		return p0.x * p1.x + p0.y * p1.y;
 	}
 
-	this.applySettings = function(settings) {
+	this.applySettings = function (settings) {
 
 		if (!settings) {
 			settings = {};
@@ -20,25 +20,25 @@ function Wheel(containerId, restaurants, settings) {
 		this.settings.arrowHeight = settings.arrowHeight ? settings.arrowHeight : 29;
 
 		this.settings.wheelCentre = {
-			x : this.settings.width / 2,
-			y : null // calculate a bit further down
+			x: this.settings.width / 2,
+			y: null // calculate a bit further down
 		};
 
 		// The top of the wheel
 		var wheelTop = {
-			x : this.settings.wheelCentre.x,
-			y : this.settings.arrowHeight * 0.65
+			x: this.settings.wheelCentre.x,
+			y: this.settings.arrowHeight * 0.65
 		};
 
-		if (this.settings.height*2 + wheelTop.y >= this.settings.width) {
-			this.settings.wheelCentre.y = wheelTop.y + this.settings.width/2;
+		if (this.settings.height * 2 + wheelTop.y >= this.settings.width) {
+			this.settings.wheelCentre.y = wheelTop.y + this.settings.width / 2;
 		} else {
 			// Where the wheel meets the bottom left corner of the visible area
 			// Vector from where the wheel meets the left corner of the visible area to
 			// the middle of the visible area
-			var p0 = { x : this.settings.wheelCentre.x, y : this.settings.height - wheelTop.y };
+			var p0 = { x: this.settings.wheelCentre.x, y: this.settings.height - wheelTop.y };
 			// Where middle of 
-			var p1 = { x : this.settings.wheelCentre.x, y : 0 };
+			var p1 = { x: this.settings.wheelCentre.x, y: 0 };
 
 			// The angle around the bottom left corner of the visible area from p1 to p0
 			var arcAngle = Math.PI / 2 - Math.acos(this.getDotProduct(p0, p1) / (this.getMagnitude(p0) * this.getMagnitude(p1)));
@@ -61,7 +61,7 @@ function Wheel(containerId, restaurants, settings) {
 		this.settings.spinRotationsMin = settings.spinRotationsMin ? settings.spinRotationsMin : 1;
 		this.settings.spinRotationsMax = settings.spinRotationsMax ? settings.spinRotationsMax : 2;
 
-		this.settings.colours = settings.colours ? settings.colours : 
+		this.settings.colours = settings.colours ? settings.colours :
 			[
 				"#C9DE63",
 				"#6BC973",
@@ -76,6 +76,8 @@ function Wheel(containerId, restaurants, settings) {
 				"#FFD83F",
 				"#FEF53F"
 			];
+
+		this.settings.showProgress = true;
 	};
 
 	this.applySettings(settings);
@@ -87,6 +89,12 @@ function Wheel(containerId, restaurants, settings) {
 	this.container = $('#' + containerId);
 	this.container.append('<canvas style="border-width:1px;border-style:solid;border-color:#cccccc;" class="canvas" width="' + this.settings.width + '" height="' + this.settings.height + '" ></canvas>');
 	this.canvas = $('#' + containerId + ' .canvas').get(0);
+
+	if (this.settings.showProgress == true) {
+		this.container.append('<div class="progress progress-striped active" style="margin:0 auto;width:' + this.settings.width + 'px;"><div class="bar" style="width: 0%;"></div></div>');
+		this.progresscontainer = $('#' + containerId + ' .progress').get(0);
+		this.progressbar = $('#' + containerId + ' .bar').get(0);
+	}
 
 	this.restaurants = restaurants;
 
@@ -128,25 +136,36 @@ function Wheel(containerId, restaurants, settings) {
 
 	// Rotates the wheel based on spinProgress
 	this.rotateWheel = function () {
+		// updates the progress bar
+		if (this.progressbar != null) {
+			$(this.progressbar).css("width", (this.spinProgress * 120) + "%");
+		}
 
 		this.currentRotation = this.easeOut(this.spinProgress, this.spinAngleStart, this.spinRotationTotal);
 		this.drawWheel();
 
 		this.spinProgress += this.settings.updateRate / this.spinTimeTotal;
-		if(this.spinProgress >= 1.0) {
+
+		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
 			return;
 		}
 
 		var _this = this;
-		this.spinTimeout = setTimeout(function() { _this.rotateWheel(); }, this.settings.updateRate);
+		this.spinTimeout = setTimeout(function () { _this.rotateWheel(); }, this.settings.updateRate);
 	}
 
 	// Ends a spin and draws the winning item
-	this.stopRotateWheel = function() {
+	this.stopRotateWheel = function () {
 		clearTimeout(this.spinTimeout);
 
 		this.context.beginPath();
+
+		// updates the progress bar
+		if (this.progressbar != null) {
+			$(this.progresscontainer).removeClass('active');
+			$(this.progressbar).css("width", "100%");
+		}
 
 		var degrees = this.currentRotation * 180 / Math.PI + 90;
 		var arcd = this.arc * 180 / Math.PI;
@@ -158,7 +177,7 @@ function Wheel(containerId, restaurants, settings) {
 		var textWidth = this.context.measureText(text).width;
 		var textX = this.settings.width / 2 - textWidth / 2;
 
-		this.context.rect(textX-10, 2 * this.settings.height / 3 - 10, textWidth+20, 40);
+		this.context.rect(textX - 10, 2 * this.settings.height / 3 - 10, textWidth + 20, 40);
 		this.context.fillStyle = "white";
 		this.context.fill();
 
