@@ -32,7 +32,8 @@
 		"Tim Horton's",
 		"Wasabi Teriyaki",
 		"Wild Wings",
-		"Whole Foods"
+		"Whole Foods",
+		"Wendy's"
 	],
   "category" : [
 		{
