@@ -31,9 +31,9 @@
 		"Thai Satay",
 		"Tim Horton's",
 		"Wasabi Teriyaki",
+		"Wendy's",
 		"Wild Wings",
-		"Whole Foods",
-		"Wendy's"
+		"Whole Foods"
 	],
   "category" : [
 		{
