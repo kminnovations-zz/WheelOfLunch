@@ -1,24 +1,3 @@
-body, p {
-	font-family: arial;
-}
-
-h1 {
-	font-family: Times New Roman;
-}
-
-h2 {
-	background-color: #f7f7f7;
-	text-align: left;
-	margin-bottom: 8px;
-	margin-top: 8px;
-	padding: 4px;
-	border-top: solid 1px #999999;
-	border-bottom: solid 1px #999999;
-	clear: both;
-	font-family: Times New Roman;
-	font-size: 20px;
-}
-
 .optioncontainer {
 	padding-left: 80px;
 	padding-right: 80px;
