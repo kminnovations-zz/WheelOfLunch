@@ -12,7 +12,9 @@
 		"Jason Pelczynski",
 		"Jackie Robinson",
 		"Garry Sharma",
-		"Brent Snooks"
+		"Eric Park",
+		"Lorenzo Ramos",
+		"Sir Brent Snooks"
 	],
   "category" : [
 		{
