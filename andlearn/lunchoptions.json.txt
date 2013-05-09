@@ -9,12 +9,12 @@
 		"Andrew Holmes",
 		"Jack Jones",
 		"Philip Lim",
+		"Eric Park",
 		"Jason Pelczynski",
 		"Jackie Robinson",
-		"Garry Sharma",
-		"Eric Park",
 		"Lorenzo Ramos",
-		"Sir Brent Snooks"
+		"Garry Sharma",
+		"Brent Snooks"
 	],
   "category" : [
 		{
