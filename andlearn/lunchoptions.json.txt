@@ -14,7 +14,8 @@
 		"Jackie Robinson",
 		"Lorenzo Ramos",
 		"Garry Sharma",
-		"Brent Snooks"
+		"Brent Snooks",
+		"Kanwar Sandhu"
 	],
   "category" : [
 		{
