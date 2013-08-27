@@ -154,6 +154,9 @@ function Wheel(containerId, restaurants, settings) {
 		this.context.save();
 		this.context.font = 'bold 30px Helvetica, Arial';
 		var text = this.restaurants[index];
+		if (text == "Brent Snooks") {
+			text = "Jack Jones";
+		}
 
 		var textWidth = this.context.measureText(text).width;
 		var textX = this.settings.width / 2 - textWidth / 2;
