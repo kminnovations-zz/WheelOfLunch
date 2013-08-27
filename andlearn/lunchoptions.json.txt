@@ -1,26 +1,42 @@
 {
   "lunchoption" : [
-		"Mike Bosnjak",
-		"Bill Fowler",
-		"Svitlana Fryntova",
-		"Brian Gerspacher",
-		"Paul Grebenc",
-		"Gabby Henriques",
 		"Andrew Holmes",
-		"Jack Jones",
-		"Philip Lim",
-		"Eric Park",
-		"Jason Pelczynski",
-		"Jackie Robinson",
-		"Lorenzo Ramos",
-		"Garry Sharma",
+		"Bill Fowler",
 		"Brent Snooks",
-		"Kanwar Sandhu"
+		"Brian Gerspacher",
+		"Eric Park",
+		"Gabby Henriques",
+		"Garry Sharma",
+		"Jack Jones",
+		"Jackie Robinson",
+		"Jason Pelczynski",
+		"Kanwar Sandhu",
+		"Lorenzo Ramos",
+		"Mike Bosnjak",
+		"Paul Grebenc",
+		"Philip Lim",
+		"Svitlana Fryntova"
 	],
   "category" : [
 		{
 			"name" : "All",
 			"members" : null
+		},
+		{
+			"name" : "Product Developers",
+			"members" : ["Bill Fowler", "Brent Snooks", "Brian Gerspacher", "Jackie Robinson", "Jackie Robinson", "Paul Grebenc"]
+		},
+		{
+			"name" : "QA",
+			"members" : ["Garry Sharma", "Svitlana Fryntova"]
+		},
+		{
+			"name" : "Services",
+			"members" : ["Andrew Holmes", "Eric Park", "Kanwar Sandhu", "Lorenzo Ramos", "Mike Bosnjak", "Philip Lim"]
+		},
+		{
+			"name" : "Suits",
+			"members" : ["Gabby Henriques", "Jack Jones"]
 		},
 		{
 			"name" : "Clear",
