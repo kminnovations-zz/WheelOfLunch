@@ -24,7 +24,7 @@
 		},
 		{
 			"name" : "Product Developers",
-			"members" : ["Bill Fowler", "Brent Snooks", "Brian Gerspacher", "Jackie Robinson", "Jackie Robinson", "Paul Grebenc"]
+			"members" : ["Bill Fowler", "Brent Snooks", "Brian Gerspacher", "Jackie Robinson", "Jackie Robinson", "Paul Grebenc", "Jason Pelczynski"]
 		},
 		{
 			"name" : "QA",
