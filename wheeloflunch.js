@@ -24,7 +24,21 @@ $(document).ready(function () {
 		});
 
 		// Set the click handler for each category to call the category selection function
-		$('#categories .option').click(function () { selectCategory($(this).html()); });
+		$('#categories .option').click(function () {
+			var category = $(this).html();
+
+			if (category == 'All' || category == 'Clear') {
+				$('#categories .option').each(function () {
+					$(this).removeClass('selected');
+				});
+				var categories = [category];
+				selectCategory(categories);
+			} else {
+				$(this).toggleClass('selected');
+				seletedCategories();
+			}
+
+		});
 	});
 
 	// Set up the wheel. (This wheel with no options never gets used. It's just
@@ -36,27 +50,45 @@ $(document).ready(function () {
 	});
 });
 
+//
+function seletedCategories() {
+	var categories = new Array();
+	$('#categories .selected').each(function () {
+		categories.push($(this).html());
+	});
+	selectCategory(categories);
+}
+
 // Selects the items that are contained in category with the given name
 function selectCategory(category) {
-	// Loop over categories to find the one that matches the given text
-	for (var i = 0; i < optionData.category.length; i += 1) {
-		if (optionData.category[i].name == category) {
 
-			// Loop over all of the options
-			var lunchoptions = $('#lunchoptions .option');
-			for (var j = 0; j < lunchoptions.length; j += 1) {
 
-				// If the current option is contained in the category, mark it as selected,
-				// otherwise mark it as not selected
-				var currentoption = $(lunchoptions.get(j));
+	// Loop over all of the options
+	var lunchoptions = $('#lunchoptions .option');
+	for (var j = 0; j < lunchoptions.length; j += 1) {
+
+		// If the current option is contained in the category, mark it as selected,
+		// otherwise mark it as not selected
+		var currentoption = $(lunchoptions.get(j));
+
+		var meetsAll = false;
+		// Loop over categories to find the one that matches the given text
+		for (var i = 0; i < optionData.category.length; i += 1) {
+			if ($.inArray(optionData.category[i].name, category) >= 0) {
+				// this category is selected
 				if (!optionData.category[i].members || $.inArray(currentoption.html(), optionData.category[i].members) >= 0) {
-					currentoption.addClass('selected');
-				}
-				else {
-					currentoption.removeClass('selected');
+					meetsAll = true;
+				} else {
+					meetsAll = false;
+					break;
 				}
 			}
-			break;
+		}
+
+		if (meetsAll) {
+			currentoption.addClass('selected');
+		} else {
+			currentoption.removeClass('selected');
 		}
 	}
 }
