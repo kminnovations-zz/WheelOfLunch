@@ -1,46 +1,115 @@
 {
   "lunchoption" : [
-		"Andrew Holmes",
-		"Bill Fowler",
-		"Brent Snooks",
-		"Brian Gerspacher",
-		"Eric Park",
-		"Gabby Henriques",
-		"Garry Sharma",
-		"Jack Jones",
-		"Jackie Robinson",
-		"Jason Pelczynski",
-		"Kanwar Sandhu",
-		"Lorenzo Ramos",
-		"Mike Bosnjak",
-		"Paul Grebenc",
-		"Philip Lim",
-		"Svitlana Fryntova"
+		{
+			"name" : "Andrew Holmes",
+			"categories" : []
+		},
+		{
+			"name" : "Bill Fowler",
+			"categories" : []
+		},
+		{
+			"name" : "Brent Snooks",
+			"categories" : []
+		},
+		{
+			"name" : "Brian Gerspacher",
+			"categories" : []
+		},
+		{
+			"name" : "Eric Park",
+			"categories" : []
+		},
+		{
+			"name" : "Gabby Henriques",
+			"categories" : []
+		},
+		{
+			"name" : "Garry Sharma",
+			"categories" : []
+		},
+		{
+			"name" : "Jack Jones",
+			"categories" : []
+		},
+		{
+			"name" : "Jackie Robinson",
+			"categories" : []
+		},
+		{
+			"name" : "Jason Pelczynski",
+			"categories" : []
+		},
+		{
+			"name" : "Kanwar Sandhu",
+			"categories" : []
+		},
+		{
+			"name" : "Lorenzo Ramos",
+			"categories" : []
+		},
+		{
+			"name" : "Mike Bosnjak",
+			"categories" : []
+		},
+		{
+			"name" : "Paul Grebenc",
+			"categories" : []
+		},
+		{
+			"name" : "Philip Lim",
+			"categories" : []
+		},
+		{
+			"name" : "Svitlana Fryntova",
+			"categories" : []
+		}
 	],
-  "category" : [
+	"category" : [
 		{
 			"name" : "All",
 			"members" : null
 		},
 		{
 			"name" : "Product Developers",
-			"members" : ["Bill Fowler", "Brent Snooks", "Brian Gerspacher", "Jackie Robinson", "Jackie Robinson", "Paul Grebenc", "Jason Pelczynski"]
+			"members" : [
+				"Bill Fowler",
+				"Brent Snooks",
+				"Brian Gerspacher",
+				"Jackie Robinson",
+				"Jackie Robinson",
+				"Jason Pelczynski",
+				"Paul Grebenc"
+			]
 		},
 		{
 			"name" : "QA",
-			"members" : ["Garry Sharma", "Svitlana Fryntova"]
+			"members" : [
+				"Garry Sharma",
+				"Svitlana Fryntova"
+			]
 		},
 		{
 			"name" : "Services",
-			"members" : ["Andrew Holmes", "Eric Park", "Kanwar Sandhu", "Lorenzo Ramos", "Mike Bosnjak", "Philip Lim"]
+			"members" : [
+				"Andrew Holmes",
+				"Eric Park",
+				"Kanwar Sandhu",
+				"Lorenzo Ramos",
+				"Mike Bosnjak",
+				"Philip Lim"
+			]
 		},
 		{
 			"name" : "Suits",
-			"members" : ["Gabby Henriques", "Jack Jones"]
+			"members" : [
+				"Gabby Henriques",
+				"Jack Jones"
+			]
 		},
 		{
 			"name" : "Clear",
 			"members" : []
 		}
-  ]
+	]
 }

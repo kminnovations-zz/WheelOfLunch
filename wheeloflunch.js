@@ -1,6 +1,7 @@
 // Contens of lunchoptions.json.txt
 var optionData;
 
+
 $(document).ready(function () {
 
 	var folderLocation = window.location.pathname;
