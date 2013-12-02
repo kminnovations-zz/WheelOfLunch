@@ -28,13 +28,19 @@
 			"name" : "Cora's",
 			"website" : "",
 			"address" : "",
-			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+			"categories" : ["Breakfast", "Walking distance", "$10-20", "1 h"]
+		},
+		{
+			"name" : "Domino's Pizza",
+			"website" : "http://www.dominos.ca/",
+			"address" : "",
+			"categories" : ["$10-20", "30 min"]
 		},
 		{
 			"name" : "Denny's",
 			"website" : "",
 			"address" : "",
-			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+			"categories" : ["Breakfast", "Walking distance", "$10-20", "1 h"]
 		},
 		{
 			"name" : "Fantastico",
@@ -47,6 +53,12 @@
 			"website" : "",
 			"address" : "",
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+		},
+		{
+			"name" : "Harpers Landing",
+			"website" : "",
+			"address" : "",
+			"categories" : ["Beer", "$20-30", "1 h"]
 		},
 		{
 			"name" : "Kelsey's",
@@ -62,12 +74,6 @@
 		},
 		{
 			"name" : "Kori's Roti",
-			"website" : "",
-			"address" : "",
-			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
-		},
-		{
-			"name" : "Little Tokyo",
 			"website" : "",
 			"address" : "",
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
@@ -107,6 +113,12 @@
 			"website" : "",
 			"address" : "",
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+		},
+		{
+			"name" : "Popeye's",
+			"website" : "http://popeyeschicken.ca/",
+			"address" : "",
+			"categories" : ["$10-20", "30 min"]
 		},
 		{
 			"name" : "Philthy McNasty's",
@@ -154,7 +166,7 @@
 			"name" : "Sunset Grill",
 			"website" : "",
 			"address" : "",
-			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+			"categories" : ["Breakfast", "Walking distance", "$10-20", "1 h"]
 		},
 		{
 			"name" : "Swiss Chalet",
