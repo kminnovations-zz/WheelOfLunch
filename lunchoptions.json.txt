@@ -109,12 +109,6 @@
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
 		},
 		{
-			"name" : "Panzerotto",
-			"website" : "",
-			"address" : "",
-			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
-		},
-		{
 			"name" : "Popeye's",
 			"website" : "http://popeyeschicken.ca/",
 			"address" : "",
@@ -191,6 +185,12 @@
 			"website" : "",
 			"address" : "",
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+		},
+		{
+			"name" : "Turtle Jacks",
+			"website" : "http://turtlejacks.com/",
+			"address" : "360 Dundas Street East, Oakville",
+			"categories" : ["Beer", "$15-30", "2 h"]
 		},
 		{
 			"name" : "Wasabi Teriyaki",
