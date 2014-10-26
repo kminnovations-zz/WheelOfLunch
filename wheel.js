@@ -8,6 +8,17 @@ function Wheel(containerId, restaurants, settings) {
 		return p0.x * p1.x + p0.y * p1.y;
 	}
 
+	// Returns the total weight of existing restaurants in this.restaurants
+	this.determineTotalWeight = function() {
+		var totalWeight = 0;
+		if (this.restaurants) {
+			for (var i = 0; i < this.restaurants.length; i += 1) {
+				totalWeight += this.restaurants[i].weight;
+			}
+		}
+		return totalWeight;
+	}
+
 	this.applySettings = function (settings) {
 
 		if (!settings) {
@@ -18,6 +29,7 @@ function Wheel(containerId, restaurants, settings) {
 		this.settings.width = settings.width ? settings.width : 760;
 		this.settings.height = settings.height ? settings.height : 300;
 		this.settings.arrowHeight = settings.arrowHeight ? settings.arrowHeight : 29;
+		this.settings.expectLongText = settings.expectLongText != undefined ? settings.expectLongText : true;
 
 		this.settings.wheelCentre = {
 			x: this.settings.width / 2,
@@ -55,11 +67,11 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.settings.updateRate = settings.updateRate ? settings.updateRate : 30;
 
-		this.settings.spinSecondsMin = settings.spinSecondsMin ? settings.spinSecondsMin : 6;
-		this.settings.spinSecondsMax = settings.spinSecondsMax ? settings.spinSecondsMax : 8;
+		this.settings.spinSecondsMin = settings.spinSecondsMin ? settings.spinSecondsMin : 7;
+		this.settings.spinSecondsMax = settings.spinSecondsMax ? settings.spinSecondsMax : 9;
 
-		this.settings.spinRotationsMin = settings.spinRotationsMin ? settings.spinRotationsMin : 1;
-		this.settings.spinRotationsMax = settings.spinRotationsMax ? settings.spinRotationsMax : 2;
+		this.settings.spinRotationsMin = settings.spinRotationsMin ? settings.spinRotationsMin : 2;
+		this.settings.spinRotationsMax = settings.spinRotationsMax ? settings.spinRotationsMax : 3;
 
 		this.settings.colours = settings.colours ? settings.colours :
 			[
@@ -77,7 +89,7 @@ function Wheel(containerId, restaurants, settings) {
 				"#FEF53F"
 			];
 
-		this.settings.showProgress = true;
+		this.settings.showProgress = settings.showProgress != undefined ? settings.showProgress : true;
 	};
 
 	this.applySettings(settings);
@@ -97,6 +109,7 @@ function Wheel(containerId, restaurants, settings) {
 	}
 
 	this.restaurants = restaurants;
+	this.totalWeight = this.determineTotalWeight();
 
 	this.currentRotation = 0;
 
@@ -110,12 +123,12 @@ function Wheel(containerId, restaurants, settings) {
 
 		if (restaurants) {
 			this.restaurants = restaurants;
+			this.totalWeight = this.determineTotalWeight();
 		}
 		if (settings) {
 			this.applySettings(settings);
 		}
 
-		this.arc = 2 * Math.PI / this.restaurants.length;
 		this.isSpinning = true;
 		this.spinProgress = 0;
 		this.spinAngleStart = this.currentRotation;
@@ -167,12 +180,30 @@ function Wheel(containerId, restaurants, settings) {
 			$(this.progressbar).css("width", "100%");
 		}
 
-		var degrees = this.currentRotation * 180 / Math.PI + 90;
-		var arcd = this.arc * 180 / Math.PI;
-		var index = Math.floor((360 - degrees % 360) / arcd);
+		// This is the angle from the start of the wheel to the arrow at the
+		// completion of the spin. This takes into account that the start is on the
+		// right and the arrow is at the top.
+		var winningAngle = - this.currentRotation - Math.PI / 2;
+		// Determine which item corresponds to the winning angle. This takes into
+		// account that the wheel is spun clockwise and winningAngle is always
+		// negative.
+		var winningWeight = winningAngle * this.totalWeight / 2 / Math.PI;
+		while(winningWeight < 0) {
+			winningWeight += this.totalWeight;
+		}
+		var text = null;
+		var currentWeight = 0;
+		for (var i = 0; i < this.restaurants.length && text == null; i += 1) {
+			if (currentWeight + this.restaurants[i].weight > winningWeight) {
+				text = this.restaurants[i].name;
+			} else {
+				currentWeight += this.restaurants[i].weight;
+			}
+		}
+
+		//var arcd = this.arc * 180 / Math.PI;
 		this.context.save();
 		this.context.font = 'bold 30px Helvetica, Arial';
-		var text = this.restaurants[index];
 
 		var textWidth = this.context.measureText(text).width;
 		var textX = this.settings.width / 2 - textWidth / 2;
@@ -205,20 +236,27 @@ function Wheel(containerId, restaurants, settings) {
 
 			this.context.strokeStyle = "#303030";
 			this.context.lineWidth = 2;
-			
+
 			var divisor = this.findEvenDivisor(this.restaurants.length, this.settings.colours.length);
 			var wheelColours = this.settings.colours.slice(0, divisor);
-			
+
+			var angle = this.currentRotation;
+
 			for(var i = 0; i < this.restaurants.length; i++) {
-				var angle = this.currentRotation + i * this.arc;
+
+				// The angle that corresponds to the two edges of the slice of the
+				// wheel belonging to restaurant i
+				var angleDelta = 2 * Math.PI * this.restaurants[i].weight / this.totalWeight;
+
 				this.context.fillStyle = wheelColours[i % wheelColours.length];
-				
+
+				// Draw a slice of the wheel
 				this.context.beginPath();
-				this.context.arc(this.settings.wheelCentre.x, this.settings.wheelCentre.y, this.settings.radiusOuter, angle, angle + this.arc, false);
-				this.context.arc(this.settings.wheelCentre.x, this.settings.wheelCentre.y, this.settings.radiusInner, angle + this.arc, angle, true);
+				this.context.arc(this.settings.wheelCentre.x, this.settings.wheelCentre.y, this.settings.radiusOuter, angle, angle + angleDelta, false);
+				this.context.arc(this.settings.wheelCentre.x, this.settings.wheelCentre.y, this.settings.radiusInner, angle + angleDelta, angle, true);
 				this.context.stroke();
 				this.context.fill();
-				
+
 				this.context.save();
 /*
 				// Shadows seem like a bad idea when the background colour is always different
@@ -231,12 +269,16 @@ function Wheel(containerId, restaurants, settings) {
 				this.context.fillStyle = "#101010";
 				// move the text to its spot on the wheel
 				this.context.translate(
-					this.settings.wheelCentre.x + Math.cos(angle + this.arc / 2) * this.settings.radiusText,
-					this.settings.wheelCentre.y + Math.sin(angle + this.arc / 2) * this.settings.radiusText);
+					this.settings.wheelCentre.x + Math.cos(angle + angleDelta / 2) * this.settings.radiusText,
+					this.settings.wheelCentre.y + Math.sin(angle + angleDelta / 2) * this.settings.radiusText);
 				// rotate the text to the same angle as its spot on the wheel
-				this.context.rotate(angle + this.arc / 2 + Math.PI / 2);
+				if (this.settings.expectLongText) {
+					this.context.rotate(angle + angleDelta / 2 + Math.PI / 2);
+				} else {
+					this.context.rotate(angle + angleDelta / 2);
+				}
 
-				var text = this.restaurants[i];
+				var text = this.restaurants[i].name;
 				// Determine a font size appropriate for the text based on length
 				var fontSize =
 					3
@@ -245,9 +287,11 @@ function Wheel(containerId, restaurants, settings) {
 					*
 					(text.length > 14 ? 5 : text.length < 5 ? 17 : (19 - text.length));
 
-				this.context.font = 'bold ' + (fontSize > 18 ? 18 : fontSize) + 'px Helvetica, Arial';
+				this.context.font = (this.settings.expectLongText ? 'bold ' : '') + (fontSize > 18 ? 18 : fontSize) + 'px Helvetica, Arial';
 				this.context.fillText(text, -this.context.measureText(text).width / 2, 0);
 				this.context.restore();
+
+				angle += angleDelta;
 			} 
 
 			//Arrow
