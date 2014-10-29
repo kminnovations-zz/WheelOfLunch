@@ -25,27 +25,47 @@
 				$('.canvassupportwarning').show();
 			}
 
+			//** TODO: unhardcode the items
 			var restaurants = [];
-			restaurants.push({ name : 'Brent S', weight : 6 });
-			restaurants.push({ name : 'Star E', weight : 5 });
 			restaurants.push({ name : 'Amanda T', weight : 4 });
-			restaurants.push({ name : 'Andrew H', weight : 4 });
-			restaurants.push({ name : 'Zoë C', weight : 3 });
-			restaurants.push({ name : 'Kelty C', weight : 3 });
-			restaurants.push({ name : 'Jessica N', weight : 3 });
-			restaurants.push({ name : 'Selin J', weight : 2 });
-			restaurants.push({ name : 'Laura M', weight : 1 });
-			restaurants.push({ name : 'Jason P', weight : 1 });
-			restaurants.push({ name : 'Chris R', weight : 1 });
+			restaurants.push({ name : 'Andrew H', weight : 9 });
+			restaurants.push({ name : 'Anita S', weight : 2 });
+			restaurants.push({ name : 'Bill F', weight : 6 });
+			restaurants.push({ name : 'Bill M', weight : 3 });
+			restaurants.push({ name : 'Brent S', weight : 8 });
+			restaurants.push({ name : 'Brian G', weight : 5 });
+			restaurants.push({ name : 'Brian R', weight : 1 });
+			restaurants.push({ name : 'Brian S', weight : 3 });
+			restaurants.push({ name : 'Celina C', weight : 1 });
+			restaurants.push({ name : 'Chris L', weight : 2 });
+			restaurants.push({ name : 'Chris R', weight : 2 });
+			restaurants.push({ name : 'Dave G', weight : 8 });
+			restaurants.push({ name : 'David S', weight : 2 });
+			restaurants.push({ name : 'Ed S', weight : 3 });
+			restaurants.push({ name : 'Eric P', weight : 6 });
+			restaurants.push({ name : 'Gabby H', weight : 2 });
+			restaurants.push({ name : 'Garry S', weight : 2 });
+			restaurants.push({ name : 'Huw L', weight : 1 });
+			restaurants.push({ name : 'Jackie R', weight : 3 });
+			restaurants.push({ name : 'James H', weight : 1 });
+			restaurants.push({ name : 'Jason P', weight : 3 });
+			restaurants.push({ name : 'Jessica N', weight : 8 });
+			restaurants.push({ name : 'Kate E', weight : 1 });
+			restaurants.push({ name : 'Kelty C', weight : 4 });
+			restaurants.push({ name : 'Laura M', weight : 2 });
+			restaurants.push({ name : 'Lorenzo R', weight : 5 });
+			restaurants.push({ name : 'Lucas L', weight : 3 });
+			restaurants.push({ name : 'Matt A', weight : 1 });
+			restaurants.push({ name : 'Matthew G', weight : 4 });
+			restaurants.push({ name : 'Michael B', weight : 7 });
+			restaurants.push({ name : 'Patrick L', weight : 1 });
+			restaurants.push({ name : 'Philip L', weight : 8 });
+			restaurants.push({ name : 'Robyn W', weight : 6 });
 			restaurants.push({ name : 'Sean O', weight : 1 });
-			restaurants.push({ name : 'Philip L', weight : 1 });
-			restaurants.push({ name : 'Svitlana F', weight : 1 });
-			restaurants.push({ name : 'Michael B', weight : 1 });
-			restaurants.push({ name : 'Gabriela H', weight : 1 });
-			restaurants.push({ name : 'Matthew G', weight : 1 });
-			restaurants.push({ name : 'Eric P', weight : 1 });
-			restaurants.push({ name : 'Lucas L', weight : 1 });
-			restaurants.push({ name : 'Robyn W', weight : 1 });
+			restaurants.push({ name : 'Selin J', weight : 4 });
+			restaurants.push({ name : 'Star E', weight : 4 });
+			restaurants.push({ name : 'Svitlana F', weight : 2 });
+			restaurants.push({ name : 'Zoë C', weight : 6 });
 			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false });
 			wheel.drawWheel();
 
@@ -55,24 +75,7 @@
 
 		// Handles a request to spin the wheel
 		function spin() {
-wheel.spin();
-return;
-			// Make an array of selected restaurants from the selection
-/*
-			$('#lunchoptions .selected').each(function () {
-				restaurants.push($(this).html());
-			});
-*/
-			// If there is at least one restaurant selected, spin the wheel (TODO: put this check in the wheel code)
-			if (restaurants.length > 0) {
-
-				// If there is no wheel yet, create it
-				if (!wheel) {
-					wheel = new Wheel('wheelContainer');
-				}
-
-				wheel.spin();
-			}
+			wheel.spin();
 		}
 
 	</script>
@@ -93,54 +96,11 @@ return;
 		</div>
 	</div>
 
-	<div class="navbar navbar-inverse navbar-fixed-top" style="display:none;">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href="#">Wheel of Lunch</a><div class="nav-collapse collapse">
-					<ul class="nav">
-						<li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-						<li><a href="andlearn/index.htm"><i class="icon-qrcode icon-white"></i> n' Learn</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book icon-white"></i> Development <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="https://trello.com/board/wheel-of-lunch/508ad7a001da5e8d21000afd" target="_blank">Trello Board</a></li>
-								<li><a href="https://github.com/brentsnooks/WheelOfLunch" target="_blank">GitHub</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
-
-	<div class="container" style="display:none;">
-		<div class="hero-unit">
-			<h2>Click to highlight the lunch options you are considering.</h2>
-		</div>
-		<!-- Contains the lunch options which are populated from JSON -->
-		<div id="lunchoptions" class="optioncontainer">
-		</div>
-	</div>
-
-	<div class="container" style="display:none;">
-		<h2>Or click on a category to select a group of options.</h2>
-		<!-- Contains the categories which are populated from JSON -->
-		<div id="categories" class="optioncontainer">
-		</div>
-	</div>
-
 	<div class="container">
-		<h2 style="display:none;">Now click the button to spin the wheel and choose your lunch destination.</h2>
 		<!-- The wheel -->
 		<div>
 			<!-- The button to spin the wheel. -->
-			<input type="button" id="spin" style="margin-top: 10px;" value="POP me!"
+			<input type="button" id="spin" style="margin-top: 10px;" value="GET A POP"
 				class="btn btn-primary btn-large" onclick="spin();" />
 		</div>
 		<div id="wheelContainer" style="padding-top: 8px;">

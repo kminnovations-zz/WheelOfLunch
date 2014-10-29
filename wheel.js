@@ -286,9 +286,11 @@ function Wheel(containerId, restaurants, settings) {
 					(this.settings.radiusOuter/16/this.restaurants.length)
 					*
 					(text.length > 14 ? 5 : text.length < 5 ? 17 : (19 - text.length));
+				fontSize = fontSize > 18 ? 18 : (fontSize < 12 && !this.settings.expectLongText ? 12 : fontSize);
 
-				this.context.font = (this.settings.expectLongText ? 'bold ' : '') + (fontSize > 18 ? 18 : fontSize) + 'px Helvetica, Arial';
-				this.context.fillText(text, -this.context.measureText(text).width / 2, 0);
+				this.context.font = (this.settings.expectLongText ? 'bold ' : '') + fontSize + 'px Helvetica, Arial';
+				// This moves the text half its width and height away from teh centre so that it will be centred
+				this.context.fillText(text, -this.context.measureText(text).width / 2, fontSize/2-2);
 				this.context.restore();
 
 				angle += angleDelta;
