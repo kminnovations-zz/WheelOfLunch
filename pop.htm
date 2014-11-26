@@ -12,10 +12,36 @@
 	<script type="text/javascript" src="wheel.js"></script>
 	<script type="text/javascript" charset="utf-8">
 
+		$(document).ready(function() {
+			$("#data").select();
+		});
+
 		// Check if the canvas element is supported
 		function isCanvasSupported() {
 			var elem = document.createElement('canvas');
 			return !!(elem.getContext && elem.getContext('2d'));
+		}
+
+		// Creates a wheel given the weights and names entered in the textarea
+		function createWheelFromData() {
+			$('#wheelContainer').empty();
+			var restaurants = [];
+
+			// Loop over rows of text
+			$.each($('#data').val().split(/\n/), function(key, value) {
+
+				// If there is a tab, split the data at the tab into the weight before
+				// the tab and the name after the tab.
+				var indexOfTab = value.indexOf('	');
+				if (indexOfTab > 0) {
+					var currentName = value.substring(indexOfTab + 1, value.length);
+					var currentWeight = value.substring(0, indexOfTab);
+					restaurants.push({ name : currentName, weight : parseInt(currentWeight) });
+				}
+			});
+
+			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false });
+			wheel.drawWheel();
 		}
 
 		// On load, show a warning if the canvas element is not supported
@@ -24,51 +50,6 @@
 				$('.canvassupportwarningfade').show('blind', { direction: 'up' }, 1000);
 				$('.canvassupportwarning').show();
 			}
-
-			//** TODO: unhardcode the items
-			var restaurants = [];
-			restaurants.push({ name : 'Amanda T', weight : 4 });
-			restaurants.push({ name : 'Andrew H', weight : 9 });
-			restaurants.push({ name : 'Anita S', weight : 2 });
-			restaurants.push({ name : 'Bill F', weight : 6 });
-			restaurants.push({ name : 'Bill M', weight : 3 });
-			restaurants.push({ name : 'Brent S', weight : 8 });
-			restaurants.push({ name : 'Brian G', weight : 5 });
-			restaurants.push({ name : 'Brian R', weight : 1 });
-			restaurants.push({ name : 'Brian S', weight : 3 });
-			restaurants.push({ name : 'Celina C', weight : 1 });
-			restaurants.push({ name : 'Chris L', weight : 2 });
-			restaurants.push({ name : 'Chris R', weight : 2 });
-			restaurants.push({ name : 'Dave G', weight : 8 });
-			restaurants.push({ name : 'David S', weight : 2 });
-			restaurants.push({ name : 'Ed S', weight : 3 });
-			restaurants.push({ name : 'Eric P', weight : 6 });
-			restaurants.push({ name : 'Gabby H', weight : 2 });
-			restaurants.push({ name : 'Garry S', weight : 2 });
-			restaurants.push({ name : 'Huw L', weight : 1 });
-			restaurants.push({ name : 'Jackie R', weight : 3 });
-			restaurants.push({ name : 'James H', weight : 1 });
-			restaurants.push({ name : 'Jason P', weight : 3 });
-			restaurants.push({ name : 'Jessica N', weight : 8 });
-			restaurants.push({ name : 'Kate E', weight : 1 });
-			restaurants.push({ name : 'Kelty C', weight : 4 });
-			restaurants.push({ name : 'Laura M', weight : 2 });
-			restaurants.push({ name : 'Lorenzo R', weight : 5 });
-			restaurants.push({ name : 'Lucas L', weight : 3 });
-			restaurants.push({ name : 'Matt A', weight : 1 });
-			restaurants.push({ name : 'Matthew G', weight : 4 });
-			restaurants.push({ name : 'Michael B', weight : 7 });
-			restaurants.push({ name : 'Patrick L', weight : 1 });
-			restaurants.push({ name : 'Philip L', weight : 8 });
-			restaurants.push({ name : 'Robyn W', weight : 6 });
-			restaurants.push({ name : 'Sean O', weight : 1 });
-			restaurants.push({ name : 'Selin J', weight : 4 });
-			restaurants.push({ name : 'Star E', weight : 4 });
-			restaurants.push({ name : 'Svitlana F', weight : 2 });
-			restaurants.push({ name : 'Zoë C', weight : 6 });
-			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false });
-			wheel.drawWheel();
-
 		});
 
 		var wheel;
@@ -82,7 +63,7 @@
 
 	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<style>
-		body { padding-top: 0px; /* 60px to make the container go all the way to the bottom of the topbar */ }
+		body { padding-top: 0px; }
 	</style>
 	<link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="wheeloflunch.css" rel="stylesheet" type="text/css" />
@@ -91,18 +72,30 @@
 
 	<div class="canvassupportwarning alert alert-block" style="display: none; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #666666">
 		<div class="canvassupportwarningfade" style="display: none; background-color: #f7f7f7; padding: 6px; color: red;">
-			Your browser does not support the canvas element. If you are using Internet Explorer
-			9, turn off Compatibility View.
+			Your browser does not support the canvas element. If you are using Internet Explorer, turn off Compatibility View.
 		</div>
 	</div>
 
-	<div class="container">
-		<!-- The wheel -->
+	<!-- The button to spin the wheel. -->
+	<input type="button" id="spin" style="margin-top: 10px;" value="GET A POP"
+		class="btn btn-primary btn-large" onclick="spin();" />
+
+	<!-- The data entry page that is initially visible -->
+	<div id="dataPage"style="position:absolute;top:10%;left:10%;width:80%;height:80%;">
+		Enter wheel entries one per line with weight and name separated by a tab.
+		<textarea id="data" style="width:100%;height:100%;" onblur="$('#wheelPage').show();createWheelFromData();$('#dataPage').hide();">2	Sample 1
+1	Sample 2
+1	Sample 3</textarea>
+	</div>
+
+	<!-- The wheel page, not initially visible while entering data. -->
+	<div id="wheelPage" class="container" style="display:none;">
 		<div>
-			<!-- The button to spin the wheel. -->
-			<input type="button" id="spin" style="margin-top: 10px;" value="GET A POP"
-				class="btn btn-primary btn-large" onclick="spin();" />
+			<div style="float:right;display:none;">
+				<input type="Submit" onclick="$('#data').show();return false;" value="Set up" />
+			</div>
 		</div>
+		<!-- The wheel -->
 		<div id="wheelContainer" style="padding-top: 8px;">
 		</div>
 	</div>
