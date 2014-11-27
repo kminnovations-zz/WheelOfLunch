@@ -12,6 +12,9 @@
 	<script type="text/javascript" src="wheel.js"></script>
 	<script type="text/javascript" charset="utf-8">
 
+		var spin_sound = new Audio('sound/you_spin_me_right_round.mp3');
+		var win_sound = new Audio('sound/coin.wav');
+
 		$(document).ready(function() {
 			$("#data").select();
 		});
@@ -40,7 +43,7 @@
 				}
 			});
 
-			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false });
+			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sound, winSound : win_sound });
 			wheel.drawWheel();
 		}
 

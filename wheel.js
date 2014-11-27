@@ -90,6 +90,9 @@ function Wheel(containerId, restaurants, settings) {
 			];
 
 		this.settings.showProgress = settings.showProgress != undefined ? settings.showProgress : true;
+
+		this.settings.spinSound = settings.spinSound;
+		this.settings.winSound = settings.winSound;
 	};
 
 	this.applySettings(settings);
@@ -127,6 +130,11 @@ function Wheel(containerId, restaurants, settings) {
 		}
 		if (settings) {
 			this.applySettings(settings);
+		}
+
+		if (this.settings.spinSound) {
+			this.settings.spinSound.currentTime = 0;
+			this.settings.spinSound.play();
 		}
 
 		this.isSpinning = true;
@@ -222,6 +230,13 @@ function Wheel(containerId, restaurants, settings) {
 		this.context.restore();
 
 		this.isSpinning = false;
+
+		if (this.settings.spinSound) {
+			this.settings.spinSound.pause();
+		}
+		if (this.settings.winSound) {
+			this.settings.winSound.play();
+		}
 	}
 
 	// Draws the wheel based on currentRotation
