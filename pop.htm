@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="wheeloflunch.js"></script>
 	<script type="text/javascript" src="wheel.js"></script>
+	<script type="text/javascript" src="lib/jquery.raptorize.1.0.js"></script>
 	<script type="text/javascript" charset="utf-8">
 
 		var spin_sound = new Audio('sound/you_spin_me_right_round.mp3');
@@ -42,8 +43,16 @@
 					restaurants.push({ name : currentName, weight : parseInt(currentWeight) });
 				}
 			});
+			
+			var brentify = function() {
+				$('body').raptorize({
+					'enterOn' : 'timer',
+					'delayTime' : 0
+				});
+				$('<div style="display:none;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;padding-top:200px;color:red;font-size:130px;background-color:#ccc;opacity:0.8;">BRENT WINS</div>').appendTo('body').delay(800).fadeIn('fast');
+			}
 
-			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sound, winSound : win_sound });
+			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sound, winSound : win_sound, winCallback: brentify });
 			wheel.drawWheel();
 		}
 

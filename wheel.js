@@ -93,6 +93,8 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.settings.spinSound = settings.spinSound;
 		this.settings.winSound = settings.winSound;
+		
+		this.settings.winCallback = settings.winCallback;
 	};
 
 	this.applySettings(settings);
@@ -236,6 +238,10 @@ function Wheel(containerId, restaurants, settings) {
 		}
 		if (this.settings.winSound) {
 			this.settings.winSound.play();
+		}
+		
+		if ($.isFunction(this.settings.winCallback)) {
+			this.settings.winCallback(this, []);
 		}
 	}
 
