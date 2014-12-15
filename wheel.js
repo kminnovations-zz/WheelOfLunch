@@ -141,6 +141,7 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.isSpinning = true;
 		this.spinProgress = 0;
+		this.spinStart = new Date().getTime();
 		this.spinAngleStart = this.currentRotation;
 		var random = Math.random();
 		this.spinTimeTotal = (random * (this.settings.spinSecondsMax - this.settings.spinSecondsMin) + this.settings.spinSecondsMin) * 1000;
@@ -164,10 +165,13 @@ function Wheel(containerId, restaurants, settings) {
 			$(this.progressbar).css("width", (this.spinProgress * 120) + "%");
 		}
 
+		this.spinProgress = (new Date().getTime() - this.spinStart) / (this.spinTimeTotal);
+		if (this.spinProgress >= 1.0) {
+			this.spinProgress = 1.0;
+		}
+
 		this.currentRotation = this.easeOut(this.spinProgress, this.spinAngleStart, this.spinRotationTotal);
 		this.drawWheel();
-
-		this.spinProgress += this.settings.updateRate / this.spinTimeTotal;
 
 		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
