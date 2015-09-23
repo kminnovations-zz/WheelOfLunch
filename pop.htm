@@ -44,7 +44,29 @@
 			});
 			
 			var cheater = function() {
-				// add your cheats here
+				
+				if (window.spins == undefined) {
+					window.spins=0;
+				}
+				window.spins++;
+				
+				var cheatOn = 3;
+				if (cheatOn != undefined && window.spins == cheatOn) {
+					// add your cheats here
+					
+					var winner = "Brent Snooks";
+					var center = $("#wheelContainer").offset().left + 380;
+					var steal_sound = new Audio('http://themushroomkingdom.net/sounds/wav/sm64/sm64_mario_hoohoo.wav');
+					
+					// add element over the winners element
+					var displayWinner = $("<div style='display:none;position:absolute;top:580px;left:50%;margin-left:-125px;height:50px;width:250px;background-color:#FFF;border: 1px solid #000;'></div>");
+					displayWinner.append("<span style='display:inline;block;font-size:24pt;line-height:50px;font-weight:600;'>" + winner + "</span>");
+					$("body").append(displayWinner);
+					displayWinner.slideDown(2000, function(){
+						// play steal sound
+						steal_sound.play();
+					});
+				}
 			}
 
 			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sound, winSound : win_sound, winCallback: cheater });
