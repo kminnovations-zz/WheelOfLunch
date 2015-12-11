@@ -49,6 +49,12 @@
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
 		},
 		{
+			"name" : "The Gingerman Social Eatery",
+			"website" : "http://gingermansocialeatery.ca/menu",
+			"address" : "335 Kerr St, Oakville, ON",
+			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
+		},
+		{
 			"name" : "Habanero Taqueria",
 			"website" : "",
 			"address" : "",
@@ -175,12 +181,6 @@
 			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
 		},
 		{
-			"name" : "Thai Satay",
-			"website" : "",
-			"address" : "",
-			"categories" : ["Beer", "Walking distance", "$10-20", "1 h"]
-		},
-		{
 			"name" : "Tim Horton's",
 			"website" : "",
 			"address" : "",
@@ -233,6 +233,7 @@
 		{
 			"name" : "Beer",
 			"members" : [
+				"The Gingerman Social Eatery",
 				"Niblick",
 				"Monaghan's",
 				"King's Arms",
@@ -243,7 +244,6 @@
 				"Queen's Head",
 				"Swiss Chalet",
 				"Ami Sushi",
-				"Thai Satay",
 				"Spoon &amp; Fork",
 				"Wild Wings"
 			]
@@ -262,8 +262,7 @@
 				"Taco Bell",
 				"Wasabi Teriyaki",
 				"Mall",
-				"Whole Foods",
-				"Thai Satay"
+				"Whole Foods"
 			]
 		},
 		{
