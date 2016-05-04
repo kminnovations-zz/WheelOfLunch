@@ -49,43 +49,6 @@
 					window.spins=0;
 				}
 				window.spins++;
-
-				var cheatOn = 2;
-				if (cheatOn != undefined && window.spins >= cheatOn) {
-					// add your cheats here
-					var message = "Click here to give a POP to ";
-					if (window.happy == undefined) {window.happy = false;}
-					else if (window.happy == true) return;
-					else {message = "Do not click here to give a POP to ";}
-
-					var winner = "Brent Snooks";
-					var center = $("#wheelContainer").offset().left + 380;
-					var steal_sound = new Audio('http://themushroomkingdom.net/sounds/wav/sm64/sm64_mario_hoohoo.wav');					
-					var realWinner = "Stanley Wu"
-					var displayWinner = $("<div style='display:none;position:absolute;top:580px;left:50%;margin-left:-125px;height:50px;width:250px;background-color:#FFF;border: 1px solid #000;'></div>");
-					displayWinner.append("<span style='display:inline;block;font-size:24pt;line-height:50px;font-weight:600;'>" + realWinner + "</span>");
-
-
-					var stealPrompt = $("<div style='display:none;position:absolute;top:240px;left:50%;margin-left:-200px;width:400px;background-color:#FFF;border: 1px solid #000;'></div>");
-					stealPrompt.append("<span style='display:inline;block;font-size:24pt;line-height:50px;font-weight:600;'>" + message + winner + "</span>");				
-
-					// add element over the winners element
-					$("body").append(stealPrompt);	
-					stealPrompt.slideDown(2000, function(){});					
-
-					$(stealPrompt).click(function()
-					{
-						window.happy = true;
-						$("body").append(displayWinner);
-						displayWinner.slideDown(2000, function(){steal_sound.play();});
-					});					
-	
-					$("#spin").click(function()
-					{
-						$(stealPrompt).remove(); 
-						$(displayWinner).remove();
-					});
-				}
 			}
 
 			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sound, winSound : win_sound, winCallback: cheater });
