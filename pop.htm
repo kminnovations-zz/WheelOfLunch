@@ -12,7 +12,14 @@
 	<script type="text/javascript" src="wheel.js"></script>
 	<script type="text/javascript" charset="utf-8">
 
-		var spin_sound = new Audio('sound/you_spin_me_right_round.mp3');
+		var spin_sounds = [
+			new Audio('sound/around_the_world.mp3'),
+			new Audio('sound/round_and_round.mp3'),
+			new Audio('sound/round_n_round.mp3'),
+			new Audio('sound/what_goes_around_comes_around.mp3'),
+			new Audio('sound/when_i_come_around.mp3'),
+			new Audio('sound/you_spin_me_right_round.mp3'),
+		];
 		var win_sound = new Audio('sound/coin.wav');
 
 		$(document).ready(function() {
@@ -51,7 +58,7 @@
 				window.spins++;
 			}
 
-			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sound, winSound : win_sound, winCallback: cheater });
+			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, winCallback: cheater });
 			wheel.drawWheel();
 		}
 

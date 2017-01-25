@@ -133,10 +133,16 @@ function Wheel(containerId, restaurants, settings) {
 		if (settings) {
 			this.applySettings(settings);
 		}
-
-		if (this.settings.spinSound) {
-			this.settings.spinSound.currentTime = 0;
-			this.settings.spinSound.play();
+		this.spinningSound = null;
+		if (Array.isArray(this.settings.spinSound)) {
+			this.spinningSound = this.settings.spinSound[Math.floor(Math.random() * this.settings.spinSound.length)];
+		}
+		else if (this.settings.spinSound) {
+			this.spinningSound = this.settings.spinSound;
+		}
+		if (this.spinningSound) {
+			this.spinningSound.currentTime = 0;
+			this.spinningSound.play();
 		}
 
 		this.isSpinning = true;
@@ -222,12 +228,12 @@ function Wheel(containerId, restaurants, settings) {
 		var textWidth = this.context.measureText(text).width;
 		var textX = this.settings.width / 2 - textWidth / 2;
 
-		this.context.rect(textX - 10, 2 * this.settings.height / 3 - 10, textWidth + 20, 40);
+		this.context.rect(textX - 10, this.settings.height / 3 - 10, textWidth + 20, 40);
 		this.context.fillStyle = "white";
 		this.context.fill();
 
 		this.context.fillStyle = "black";
-		this.context.fillText(text, textX, 2 * this.settings.height / 3 + 20);
+		this.context.fillText(text, textX, this.settings.height / 3 + 20);
 
 		this.context.lineWidth = 1;
 		this.context.strokeStyle = "black";
@@ -237,8 +243,8 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.isSpinning = false;
 
-		if (this.settings.spinSound) {
-			this.settings.spinSound.pause();
+		if (this.spinningSound) {
+			this.spinningSound.pause();
 		}
 		if (this.settings.winSound) {
 			this.settings.winSound.play();
