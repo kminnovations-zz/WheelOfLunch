@@ -1,3 +1,11 @@
+canvas
+{
+		background-image: url('images/canada.png');	
+		background-size:40%;
+		background-repeat:no-repeat;
+		background-position: center;
+}
+
 .optioncontainer {
 	padding-left: 80px;
 	padding-right: 80px;
