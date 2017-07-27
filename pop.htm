@@ -58,7 +58,8 @@
 				window.spins++;
 			}
 
-			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, winCallback: cheater });
+			var backgroundImages = ["velocityehs.png", "ehs.png", "mobileapp.png"];
+			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater });
 			wheel.drawWheel();
 		}
 

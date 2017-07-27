@@ -1,5 +1,7 @@
 function Wheel(containerId, restaurants, settings) {
 
+	this.imageRotation = 0;
+	
 	this.getMagnitude = function(p) {
 		return Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2));
 	}
@@ -95,10 +97,29 @@ function Wheel(containerId, restaurants, settings) {
 		this.settings.winSound = settings.winSound;
 		
 		this.settings.winCallback = settings.winCallback;
+		this.settings.backgroundImages = settings.backgroundImages;
 	};
+	
+	this.applyBackgrounds = function(settings)
+	{
+		if (settings && settings.backgroundImages)
+		{
+			
+			
+			var images = this.settings.backgroundImages;
+			var image = images[this.imageRotation % images.length];
+			
+			$("canvas").css('background-image', 'url(images/' + image + ')');
+			$("canvas").css('background-repeat', 'no-repeat');
+			$("canvas").css('background-position', 'center');
+			$("canvas").css('background-size', settings.radiusOuter * 0.8 + "px");			
+			
+			this.imageRotation++;
+		}
+	}
 
 	this.applySettings(settings);
-
+	
 	this.isSpinning = false;
 
 	this.containerId = containerId;
@@ -107,6 +128,8 @@ function Wheel(containerId, restaurants, settings) {
 	this.container.append('<canvas style="border-width:1px;border-style:solid;border-color:#cccccc;" class="canvas" width="' + this.settings.width + '" height="' + this.settings.height + '" ></canvas>');
 	this.canvas = $('#' + containerId + ' .canvas').get(0);
 
+	this.applyBackgrounds(this.settings);
+	
 	if (this.settings.showProgress == true) {
 		this.container.append('<div class="progress progress-striped active" style="margin:0 auto;width:' + this.settings.width + 'px;"><div class="bar" style="width: 0%;"></div></div>');
 		this.progresscontainer = $('#' + containerId + ' .progress').get(0);
@@ -132,7 +155,10 @@ function Wheel(containerId, restaurants, settings) {
 		}
 		if (settings) {
 			this.applySettings(settings);
-		}
+		}	
+		
+		this.applyBackgrounds(this.settings);
+		
 		this.spinningSound = null;
 		if (Array.isArray(this.settings.spinSound)) {
 			this.spinningSound = this.settings.spinSound[Math.floor(Math.random() * this.settings.spinSound.length)];
