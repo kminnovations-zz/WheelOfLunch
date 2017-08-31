@@ -1,3 +1,51 @@
+.daylight
+{
+	background-color: #f1c40f;
+	animation: background 20s ease-in-out;
+}
+.daylightOver
+{
+	background-color:#111;
+	animation: none 0s;
+}
+canvas
+{
+	border: 0px none !important;
+}
+.sun {
+  box-shadow: 0 0 30px #f39c12;
+  animation: sunflare 20s linear forwards;
+  border-radius:50%;
+}
+
+@keyframes sunflare {
+  0% {
+    box-shadow: 0 0 20px #f39c12;
+  }
+  95% {
+    box-shadow: 0 0 20px #f39c12;
+  }
+  100% {
+    box-shadow: 0 0 80px #f39c12;
+  }
+  55% {
+    box-shadow: 0 0 20px #f39c12;
+  }
+  100% {
+    box-shadow: 0 0 20px #f39c12;
+  }
+}
+@keyframes background {
+  0% {
+    background-color: #f1c40f;
+  }
+  50% {
+    background-color: #111;
+  }
+  100% {
+    background-color: #f1c40f;
+  }
+  
 .optioncontainer {
 	padding-left: 80px;
 	padding-right: 80px;
