@@ -248,7 +248,7 @@ function Wheel(containerId, restaurants, settings) {
 		var currentR = Math.floor((colorFinal - colorRStart) * this.spinProgress + colorRStart);
 		var currentG = Math.floor((colorFinal - colorGStart) * this.spinProgress + colorGStart);
 		var currentB = Math.floor((colorFinal - colorBStart) * this.spinProgress + colorBStart);
-		console.log(currentR + "," + currentG + "," + currentB);
+		
 		var fill = "#" + ((1 << 24) + (currentR << 16) + (currentG << 8) + currentB).toString(16).slice(1);
 		
 		if (this.spinProgress >= 1)
