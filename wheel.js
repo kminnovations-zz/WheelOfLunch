@@ -179,13 +179,6 @@ function Wheel(containerId, restaurants, settings) {
 		this.spinTimeTotal = (random * (this.settings.spinSecondsMax - this.settings.spinSecondsMin) + this.settings.spinSecondsMin) * 1000;
 		this.spinRotationTotal = (random * (this.settings.spinRotationsMax - this.settings.spinRotationsMin) + this.settings.spinRotationsMin) * 2 * Math.PI;
 		this.rotateWheel();
-		
-		// TODO: These belong in another method
-        $("body").removeClass("daylightOver");
-		$("body").removeClass("daylight");
-		$("body").addClass("daylight");
-		$("canvas").removeClass("sun");
-		$("canvas").addClass("sun");
 	}
 
 	// Gets a value between initialValue and initialValue+changeInValue.
@@ -211,7 +204,7 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.currentRotation = this.easeOut(this.spinProgress, this.spinAngleStart, this.spinRotationTotal);
 		this.drawWheel();
-		this.drawFancyOverlay();
+
 		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
 			return;
@@ -220,47 +213,6 @@ function Wheel(containerId, restaurants, settings) {
 		var _this = this;
 		this.spinTimeout = setTimeout(function () { _this.rotateWheel(); }, this.settings.updateRate);
 	}
-	
-	this.drawFancyOverlay = function()
-	{
-		// TODO: Pass this in as a setting somehow
-		var canvas = $("canvas").get(0);
-		
-		var centerX = canvas.width / 2;
-		var centerY = canvas.height / 2;
-		
-		this.context.beginPath();
-		var finalX = centerX;
-		var finalY = centerY - 20;
-		
-		var startX = canvas.width;
-		var startY = this.settings.radiusInner * 0.9 + centerY;
-		
-		var currentX = (finalX - startX) * this.spinProgress + startX;
-		var currentY = (finalY - startY) * this.spinProgress + startY;
-		
-		var colorRStart = 241;
-		var colorGStart = 196;
-		var colorBStart = 15;
-		
-		var colorFinal = 17;
-		
-		var currentR = Math.floor((colorFinal - colorRStart) * this.spinProgress + colorRStart);
-		var currentG = Math.floor((colorFinal - colorGStart) * this.spinProgress + colorGStart);
-		var currentB = Math.floor((colorFinal - colorBStart) * this.spinProgress + colorBStart);
-		console.log(currentR + "," + currentG + "," + currentB);
-		var fill = "#" + ((1 << 24) + (currentR << 16) + (currentG << 8) + currentB).toString(16).slice(1);
-		
-		if (this.spinProgress >= 1)
-		{
-			$("body").removeClass("daylight");
-			$("body").addClass("daylightOver");
-		}
-		this.context.arc(currentX, currentY + 25, this.settings.radiusInner * 0.9, 0, 2 * Math.PI, false);
-		this.context.fillStyle = fill;
-		this.context.fill();
-		this.context.lineWidth = 0;
-	};
 
 	// Ends a spin and draws the winning item
 	this.stopRotateWheel = function () {
