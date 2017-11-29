@@ -204,7 +204,6 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.currentRotation = this.easeOut(this.spinProgress, this.spinAngleStart, this.spinRotationTotal);
 		this.drawWheel();
-		this.drawFancyOverlay();
 
 		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
@@ -214,128 +213,11 @@ function Wheel(containerId, restaurants, settings) {
 		var _this = this;
 		this.spinTimeout = setTimeout(function () { _this.rotateWheel(); }, this.settings.updateRate);
 	}
-	
-	this.drawFancyOverlay = function()
-	{
-		if (window.spinsInternal == undefined || window.spinsInternal == 0) {
-			window.spinsInternal = 0;
-			this.drawActiveUsersPieChart();
-		}
-		else if (window.spinsInternal == 1)
-		{
-			this.drawYay("Go Mobile");
-		}
-		else if (window.spinsInternal == 2)
-		{
-			this.drawYay("Go 5.6");
-		}
-	};
-	
-	this.drawYay = function(text)
-	{
-		var canvas = $("canvas").get(0);
-		var centerX = canvas.width / 2;
-		var centerY = canvas.height / 2;
-		
-		var oldAlignment = this.context.textAlign;			
-		
-		this.context.beginPath();
-		this.context.textAlign = "center";
-		this.context.strokeStyle = 'black';
-		this.context.font = '52px Arial'
-		this.context.fillText(text, centerX, centerY + 90);
-		this.context.textAlign = oldAlignment;
-	}
-	
-	this.drawActiveUsersPieChart = function()
-	{
-		var canvas = $("canvas").get(0);
-		var centerX = canvas.width / 2;
-		var centerY = canvas.height / 2;
-		
-		// With contribution from Lucas
-		if (this.spinProgress < 1)
-		{							
-			var fill = "#97979b ";
-			this.context.beginPath();
-			this.context.arc(centerX, centerY - 20, this.settings.radiusInner * 0.9, 0, 2 * Math.PI, false);
-			this.context.fillStyle = fill;
-			this.context.fill();
-			this.context.lineWidth = 0;
-			
-			var currentAngle = -0.5 * Math.PI;
-			var sliceAngle = (this.spinProgress / 1) * 2 * Math.PI;
-			this.context.beginPath();
-			this.context.arc(centerX, centerY - 20, this.settings.radiusInner * 0.9,
-					currentAngle, currentAngle + sliceAngle);
-			currentAngle += sliceAngle;
-			this.context.lineTo(centerX, centerY);
-			this.context.fillStyle = "#00B6DE ";
-			this.context.fill();
-		}
-		
-		var end = 1000000;
-		var value =  Math.floor(end * this.spinProgress);			
-		
-		var oldAlignment = this.context.textAlign;		
-		var fill = '#FFFFFF';
-		this.context.beginPath();
-		
-		this.context.textAlign = "center";
-        this.context.font = '52px Arial'
-		
-		if (this.spinProgress < 1)
-		{
-			this.context.fillStyle = fill;
-		}
-		else
-		{
-			this.context.fillStyle = "orange";
-		}
-		
-		this.context.fillText(value, centerX, centerY + 80);
-		this.context.fillText("Active Users", centerX, centerY + 140);
-		
-		this.context.textAlign = oldAlignment;
-	}
-	
-	this.drawActiveUsers = function()
-	{
-		var canvas = $("canvas").get(0);
 
-		var centerX = canvas.width / 2;
-		var centerY = canvas.height / 2;
-		
-		var start = 0;
-		var end = 1000000;			
-		var fill = "#FFFFFF";
-		
-		var value =  Math.floor(end * this.spinProgress);
-
-			
-		var oldAlignment = this.context.textAlign;
-			
-		this.context.beginPath();
-		this.context.textAlign = "center";
-		this.context.strokeStyle = 'black';
-		this.context.font = '52px serif'
-		this.context.fillStyle = fill;
-		this.context.fillText(value, centerX, centerY + 80);
-		this.context.fillText("Active Users", centerX, centerY + 140);
-		this.context.closePath();
-		this.context.fill();
-			
-		this.context.textAlign = oldAlignment;
-	};
-	
 	// Ends a spin and draws the winning item
 	this.stopRotateWheel = function () {
 		clearTimeout(this.spinTimeout);
 
-		if (window.spinsInternal != undefined) {
-			window.spinsInternal++;
-		}
-		
 		this.context.beginPath();
 
 		// updates the progress bar
