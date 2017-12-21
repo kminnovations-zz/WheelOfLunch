@@ -58,7 +58,7 @@
 				window.spins++;
 			}
 
-			var backgroundImages = ["velocityehs.png", "ehs.png", "mobileapp.png"];
+			var backgroundImages = ["velocityehs_christmas.png", "ehs_christmas.png", "mobileapp_christmas.png"];
 			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater });
 			wheel.drawWheel();
 		}
@@ -117,6 +117,7 @@
 		<!-- The wheel -->
 		<div id="wheelContainer" style="padding-top: 8px;">
 		</div>
+		<image id="extraItem" class="pop-invisible extra" src="images/santa.png" />
 	</div>
 
 </body>

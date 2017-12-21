@@ -125,7 +125,7 @@ function Wheel(containerId, restaurants, settings) {
 	this.containerId = containerId;
 
 	this.container = $('#' + containerId);
-	this.container.append('<canvas style="border-width:1px;border-style:solid;border-color:#cccccc;" class="canvas" width="' + this.settings.width + '" height="' + this.settings.height + '" ></canvas>');
+	this.container.append('<canvas style="border-width:0px;border-style:solid;border-color:#cccccc;" class="canvas" width="' + this.settings.width + '" height="' + this.settings.height + '" ></canvas>');
 	this.canvas = $('#' + containerId + ' .canvas').get(0);
 
 	this.applyBackgrounds(this.settings);
@@ -178,8 +178,42 @@ function Wheel(containerId, restaurants, settings) {
 		var random = Math.random();
 		this.spinTimeTotal = (random * (this.settings.spinSecondsMax - this.settings.spinSecondsMin) + this.settings.spinSecondsMin) * 1000;
 		this.spinRotationTotal = (random * (this.settings.spinRotationsMax - this.settings.spinRotationsMin) + this.settings.spinRotationsMin) * 2 * Math.PI;
+		
+		this.onStartingWheel();
 		this.rotateWheel();
-	}
+	},
+
+	// todo: pass this in from pop.htm
+	this.onStartingWheel = function ()
+	{
+		var direction = Math.floor(Math.random() * (3));
+		var santaClass = "santa";
+
+		$("#extraItem").removeClass("santa");
+		$("#extraItem").removeClass("left");
+		$("#extraItem").removeClass("up");
+		$("#extraItem").removeClass("right");
+		$("#extraItem").addClass("santa");
+
+		if (direction == 0) {
+			$("#extraItem").addClass("left");
+		}
+		else if (direction == 1) {
+			$("#extraItem").addClass("right");
+		}
+		else if (direction == 2) {
+			$("#extraItem").addClass("up");
+		}
+		else
+		{
+			$("#extraItem").addClass("right");
+		}
+	},
+	
+	this.onWheelStopped = function ()
+	{
+		$("#extraItem").removeClass("santa");
+	},
 
 	// Gets a value between initialValue and initialValue+changeInValue.
 	// progress is a value between 1 and 0. If values for progress are
@@ -204,9 +238,10 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.currentRotation = this.easeOut(this.spinProgress, this.spinAngleStart, this.spinRotationTotal);
 		this.drawWheel();
-
+		
 		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
+			this.onWheelStopped();
 			return;
 		}
 
