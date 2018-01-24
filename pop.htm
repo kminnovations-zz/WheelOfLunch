@@ -52,14 +52,51 @@
 			
 			var cheater = function() {
 				
+			}
+
+				// todo: pass this in from pop.htm
+			var onStartingWheel = function ()
+			{
+				if (window.spins == undefined) {
+					window.spins=0;
+				}
+				
+				var direction = window.spins % 3;
+				var santaClass = "santa";
+
+				$("#extraItem").removeClass("santa");
+				$("#extraItem").removeClass("left");
+				$("#extraItem").removeClass("center");
+				$("#extraItem").removeClass("right");
+				$("#extraItem").addClass("santa");
+
+				if (direction == 0) {
+					$("#extraItem").addClass("right");
+				}
+				else if (direction == 1) {
+					$("#extraItem").addClass("center");
+				}
+				else if (direction == 2) {
+					$("#extraItem").addClass("left");
+				}
+				else
+				{
+					$("#extraItem").addClass("right");
+				}
+			}
+			
+			var onWheelStopped = function ()
+			{
 				if (window.spins == undefined) {
 					window.spins=0;
 				}
 				window.spins++;
 			}
 
-			var backgroundImages = ["velocityehs_christmas.png", "ehs_christmas.png", "mobileapp_christmas.png"];
-			wheel = new Wheel('wheelContainer', restaurants, { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater });
+			var backgroundImages = ["resolution_1.png", "resolution_2.png", "resolution_3.png", "velocityehs.png"];
+			wheel = new Wheel('wheelContainer', restaurants, 
+			{ height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater,
+			onStartingWheel: onStartingWheel, onWheelStopped: onWheelStopped });
 			wheel.drawWheel();
 		}
 

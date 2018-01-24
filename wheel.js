@@ -98,6 +98,8 @@ function Wheel(containerId, restaurants, settings) {
 		
 		this.settings.winCallback = settings.winCallback;
 		this.settings.backgroundImages = settings.backgroundImages;
+		this.settings.onStartingWheel = settings.onStartingWheel;
+		this.settings.onWheelStopped = settings.onWheelStopped;
 	};
 	
 	this.applyBackgrounds = function(settings)
@@ -158,6 +160,8 @@ function Wheel(containerId, restaurants, settings) {
 		}	
 		
 		this.applyBackgrounds(this.settings);
+		this.onStartingWheel = this.settings.onStartingWheel;
+		this.onWheelStopped = this.settings.onWheelStopped;
 		
 		this.spinningSound = null;
 		if (Array.isArray(this.settings.spinSound)) {
@@ -179,40 +183,12 @@ function Wheel(containerId, restaurants, settings) {
 		this.spinTimeTotal = (random * (this.settings.spinSecondsMax - this.settings.spinSecondsMin) + this.settings.spinSecondsMin) * 1000;
 		this.spinRotationTotal = (random * (this.settings.spinRotationsMax - this.settings.spinRotationsMin) + this.settings.spinRotationsMin) * 2 * Math.PI;
 		
-		this.onStartingWheel();
-		this.rotateWheel();
-	},
-
-	// todo: pass this in from pop.htm
-	this.onStartingWheel = function ()
-	{
-		var direction = Math.floor(Math.random() * (3));
-		var santaClass = "santa";
-
-		$("#extraItem").removeClass("santa");
-		$("#extraItem").removeClass("left");
-		$("#extraItem").removeClass("up");
-		$("#extraItem").removeClass("right");
-		$("#extraItem").addClass("santa");
-
-		if (direction == 0) {
-			$("#extraItem").addClass("left");
-		}
-		else if (direction == 1) {
-			$("#extraItem").addClass("right");
-		}
-		else if (direction == 2) {
-			$("#extraItem").addClass("up");
-		}
-		else
+		if (this.onStartingWheel != undefined)
 		{
-			$("#extraItem").addClass("right");
+			this.onStartingWheel();
 		}
-	},
-	
-	this.onWheelStopped = function ()
-	{
-		$("#extraItem").removeClass("santa");
+
+		this.rotateWheel();
 	},
 
 	// Gets a value between initialValue and initialValue+changeInValue.
@@ -241,7 +217,10 @@ function Wheel(containerId, restaurants, settings) {
 		
 		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
-			this.onWheelStopped();
+			if (this.onWheelStopped != undefined)
+			{
+				this.onWheelStopped();
+			}
 			return;
 		}
 
