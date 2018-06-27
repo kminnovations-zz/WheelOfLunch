@@ -74,14 +74,14 @@
 
 			var onDrawing = function(context, radiusInner, radiusOuter, progress)
 			{				
-				this.drawingHelper.draw(progress * 8);
+				this.drawingHelper.draw(progress * 10);
 
 				var x = this.drawingHelper.getX();
 				var y = this.drawingHelper.getY();
-				var ballRadius = this.drawingHelper.getBallRadius(radiusInner, progress * 8);
+				var ballRadius = this.drawingHelper.getBallRadius(radiusInner, progress * 10);
 
 				this.context.arc(x, y, ballRadius, 0, 2 * Math.PI, false);
-				var fill = "#BEDEAD";
+				var fill = "#DEADBE";
 				this.context.fillStyle = fill;
 				this.context.fill();
 			}
