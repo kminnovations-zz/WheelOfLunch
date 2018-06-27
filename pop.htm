@@ -73,17 +73,20 @@
 			}
 
 			var onDrawing = function(context, radiusInner, radiusOuter, progress)
-			{				
-				this.drawingHelper.draw(progress * 10);
+			{	
+				if (progress < 1)
+				{			
+					this.drawingHelper.draw(progress * 8);
 
-				var x = this.drawingHelper.getX();
-				var y = this.drawingHelper.getY();
-				var ballRadius = this.drawingHelper.getBallRadius(radiusInner, progress * 10);
-
-				this.context.arc(x, y, ballRadius, 0, 2 * Math.PI, false);
-				var fill = "#DEADBE";
-				this.context.fillStyle = fill;
-				this.context.fill();
+					var x = this.drawingHelper.getX();
+					var y = this.drawingHelper.getY();
+					var ballRadius = this.drawingHelper.getBallRadius(radiusInner, progress * 8);
+				
+					this.context.arc(x, y, ballRadius, 0, 2 * Math.PI, false);
+					var fill = "#DEADBE";
+					this.context.fillStyle = fill;
+					this.context.fill();
+				}
 			}
 
 			var backgroundImages = ["goalkeeper.png", "goalkeeper_velocityehs.png"];
