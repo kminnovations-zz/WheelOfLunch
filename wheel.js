@@ -100,6 +100,7 @@ function Wheel(containerId, restaurants, settings) {
 		this.settings.backgroundImages = settings.backgroundImages;
 		this.settings.onStartingWheel = settings.onStartingWheel;
 		this.settings.onWheelStopped = settings.onWheelStopped;
+		this.settings.onDrawing = settings.onDrawing;
 	};
 	
 	this.applyBackgrounds = function(settings)
@@ -114,7 +115,7 @@ function Wheel(containerId, restaurants, settings) {
 			$("canvas").css('background-image', 'url(images/' + image + ')');
 			$("canvas").css('background-repeat', 'no-repeat');
 			$("canvas").css('background-position', 'center');
-			$("canvas").css('background-size', settings.radiusOuter * 0.8 + "px");			
+			$("canvas").css('background-size', settings.radiusOuter * 1.5 + "px");			
 			
 			this.imageRotation++;
 		}
@@ -162,6 +163,7 @@ function Wheel(containerId, restaurants, settings) {
 		this.applyBackgrounds(this.settings);
 		this.onStartingWheel = this.settings.onStartingWheel;
 		this.onWheelStopped = this.settings.onWheelStopped;
+		this.onDrawing = this.settings.onDrawing;
 		
 		this.spinningSound = null;
 		if (Array.isArray(this.settings.spinSound)) {
@@ -214,6 +216,7 @@ function Wheel(containerId, restaurants, settings) {
 
 		this.currentRotation = this.easeOut(this.spinProgress, this.spinAngleStart, this.spinRotationTotal);
 		this.drawWheel();
+		this.drawFancyOverlay(this.spinProgress);
 		
 		if (this.spinProgress >= 1.0) {
 			this.stopRotateWheel();
@@ -226,6 +229,14 @@ function Wheel(containerId, restaurants, settings) {
 
 		var _this = this;
 		this.spinTimeout = setTimeout(function () { _this.rotateWheel(); }, this.settings.updateRate);
+	}
+
+	this.drawFancyOverlay = function(progress)
+	{
+		if (this.onDrawing != undefined)
+		{
+			this.onDrawing(this.context, this.settings.radiusInner, this.settings.radiusOuter, progress);
+		}
 	}
 
 	// Ends a spin and draws the winning item
