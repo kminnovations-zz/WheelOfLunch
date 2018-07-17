@@ -115,7 +115,7 @@ function Wheel(containerId, restaurants, settings) {
 			$("canvas").css('background-image', 'url(images/' + image + ')');
 			$("canvas").css('background-repeat', 'no-repeat');
 			$("canvas").css('background-position', 'center');
-			$("canvas").css('background-size', settings.radiusOuter * 1.5 + "px");			
+			$("canvas").css('background-size', settings.radiusOuter * 1 + "px");			
 			
 			this.imageRotation++;
 		}

@@ -24,6 +24,22 @@
 
 		$(document).ready(function() {
 			$("#data").select();
+
+			var ocean = document.getElementById("custom"),
+			waveWidth = 10,
+			waveCount = Math.floor(window.innerWidth/waveWidth),
+			docFrag = document.createDocumentFragment();
+			var xoffset = (window.innerWidth - waveWidth * waveCount) / 2;
+
+			for(var i = 0; i < waveCount; i++){
+			var wave = document.createElement("div");
+			wave.className += " wave";
+			docFrag.appendChild(wave);
+			wave.style.left = xoffset + i * waveWidth + "px";
+			wave.style.webkitAnimationDelay = (i/100) + "s";
+			}
+
+			ocean.appendChild(docFrag);
 		});
 
 		// Check if the canvas element is supported
@@ -57,8 +73,6 @@
 			var onStartingWheel = function ()
 			{
 				var canvas = $("canvas").get(0);
-				this.drawingHelper = new BallDrawing(canvas.width, canvas.height);
-
 				if (window.spins == undefined) {
 					window.spins=0;
 				}							
@@ -74,22 +88,10 @@
 
 			var onDrawing = function(context, radiusInner, radiusOuter, progress)
 			{	
-				if (progress < 1)
-				{			
-					this.drawingHelper.draw(progress * 8);
-
-					var x = this.drawingHelper.getX();
-					var y = this.drawingHelper.getY();
-					var ballRadius = this.drawingHelper.getBallRadius(radiusInner, progress * 8);
 				
-					this.context.arc(x, y, ballRadius, 0, 2 * Math.PI, false);
-					var fill = "#DEADBE";
-					this.context.fillStyle = fill;
-					this.context.fill();
-				}
 			}
 
-			var backgroundImages = ["goalkeeper.png", "goalkeeper_velocityehs.png"];
+			var backgroundImages = ["ehs.png","cruisecartoon.png", "highfive.gif", "hawaii.gif","winner.png"];
 			wheel = new Wheel('wheelContainer', restaurants, 
 			{ height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater,
 			onStartingWheel: onStartingWheel, onWheelStopped: onWheelStopped, onDrawing: onDrawing });
@@ -109,51 +111,6 @@
 		// Handles a request to spin the wheel
 		function spin() {
 			wheel.spin();
-		}
-
-		function BallDrawing(width, height)
-		{
-			this.canvasHeight = height;
-			this.canvasWidth = width;
-			this.currentX = 0;
-			this.currentY = height;
-			this.finalX = width / 2.3;
-			this.finalY = height / 2;
-			this.fromleft = true;
-			this.currentProgress = 0;
-
-			this.getY = function()
-			{
-				return this.currentY;
-			}
-
-			this.getX = function()
-			{
-				return this.fromleft ? this.currentX : this.canvasWidth - this.currentX;
-			}
-
-			this.getBallRadius = function(radius, progress)
-			{
-				var actualProgress = progress - Math.floor(progress);
-				return radius * 0.3 * (1.45 - actualProgress);
-			}
-
-			this.draw = function(progress)
-			{
-				var previousProgress = this.currentProgress;
-				this.currentProgress = progress - Math.floor(progress);
-
-				this.currentX = this.currentProgress * this.finalX;				
-				this.currentY = this.canvasHeight - (this.finalY * this.currentProgress - 4.9 * this.currentProgress * this.currentProgress);
-
-				if (previousProgress > this.currentProgress)
-				{
-					// set new direction
-					var offset = 1.9 + Math.random(0.3);
-					this.fromleft = !this.fromleft;
-					this.finalX = this.canvasWidth / offset;
-				}
-			}
 		}
 
 	</script>
@@ -195,10 +152,8 @@
 		<!-- The wheel -->
 		<div id="wheelContainer" style="padding-top: 8px;">
 		</div>
-		<img src="images/stickman_left.png" class="fifa top lefty" />
-		<img src="images/stickman_left.png" class="fifa bottom lefty" />
-		<img src="images/stickman_right.png" class="fifa top righty" />
-		<img src="images/stickman_right.png" class="fifa bottom righty" />
+		<img src="images/cartoon-sun.png" width='256' height='256' class="fifa top righty" />
+		<div id="custom"></div>
 	</div>
 
 </body>
