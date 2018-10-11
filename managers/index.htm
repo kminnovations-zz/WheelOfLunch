@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wheel of Lunch</title>
+	<script type="text/javascript" src="../lib/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../lib/jquery-ui-1.9.2.min.js"></script>
+	<script type="text/javascript" src="../lib/jquery.jSlots.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../lib/jquery.easing.1.3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../wheeloflunch.js"></script>
+	<script type="text/javascript" src="../wheel.js"></script>
+	<script type="text/javascript">
+		// Check if the canvas element is supported
+		function isCanvasSupported() {
+			var elem = document.createElement('canvas');
+			return !!(elem.getContext && elem.getContext('2d'));
+		}
+		// On load, show a warning if the canvas element is not supported
+		$(document).ready(function () {
+			if (!isCanvasSupported()) {
+				$('.canvassupportwarningfade').show('blind', { direction: 'up' }, 1000);
+				$('.canvassupportwarning').show();
+			}
+		});
+		var wheel;
+		// Handles a request to spin the wheel
+		function spin() {
+			// Make an array of selected restaurants from the selection
+			var restaurants = [];
+			$('#lunchoptions .selected').each(function () {
+				restaurants.push($(this).html());
+			});
+			// If there is at least one restaurant selected, spin the wheel (TODO: put this check in the wheel code)
+			if (restaurants.length > 0) {
+				// If there is no wheel yet, create it
+				if (!wheel) {
+					wheel = new Wheel('wheelContainer');
+				}
+				wheel.spin(restaurants);
+			}
+		}
+	</script>
+	<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<style>
+		body { padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */ }
+	</style>
+	<link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../wheeloflunch.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="text-align: center; margin: 0px; padding-bottom: 200px;">
+
+	<div class="canvassupportwarning alert alert-block" style="display: none; border-bottom-style: solid;
+		border-bottom-width: 1px; border-bottom-color: #666666">
+		<div class="canvassupportwarningfade" style="display: none; background-color: #f7f7f7;
+			padding: 6px; color: red;">
+			Your browser does not support the canvas element. If you are using Internet Explorer
+			9, turn off Compatibility View.
+		</div>
+	</div>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="../index.htm">Wheel of Lunch</a><div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="../index.htm"><i class="icon-home icon-white"></i> Home</a></li>
+						<li class="active"><a href="../andlearn/index.htm"><i class="icon-qrcode icon-white"></i> n' Learn</a></li>
+						<li class="active"><a href="#"><i class="icon-calendar icon-white"></i> Managers' Meetings</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book icon-white"></i> Development <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="https://trello.com/board/wheel-of-lunch/508ad7a001da5e8d21000afd" target="_blank">Trello Board</a></li>
+								<li><a href="https://github.com/brentsnooks/WheelOfLunch" target="_blank">GitHub</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="hero-unit">
+			<h2>Click to highlight the managers who can facilitate:</h2>
+		</div>
+		<!-- Contains the lunch options which are populated from JSON -->
+		<div id="lunchoptions" class="optioncontainer">
+		</div>
+	</div>
+
+	<div class="container">
+		<h2>Or click on a category to select a group of people:</h2>
+		<!-- Contains the categories which are populated from JSON -->
+		<div id="categories" class="optioncontainer">
+		</div>
+	</div>
+
+	<div class="container">
+		<h2>Click the button to spin the wheel and choose your next facilitator!</h2>
+		<!-- The wheel -->
+		<div>
+			<!-- The button to spin the wheel. -->
+			<input type="button" id="spin" style="margin-top: 10px;" value="Spin the wheel!"
+				class="btn btn-primary btn-large" onclick="spin();" />
+		</div>
+		<div id="wheelContainer" style="padding-top: 8px;">
+		</div>
+	</div>
+</body>
+</html>

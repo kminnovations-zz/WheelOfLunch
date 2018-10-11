@@ -1,0 +1,63 @@
+{
+  "lunchoption" : [
+		{ "name" : "Ahsana Asgar", "categories" : [] },	
+		{ "name" : "Michael Bosnjak", "categories" : [] },	
+		{ "name" : "Stephen Gardner", "categories" : [] },	
+		{ "name" : "Toni Grondin", "categories" : [] },	
+		{ "name" : "Amanda Halashyn", "categories" : [] },	
+		{ "name" : "Jacques Laurin", "categories" : [] },	
+		{ "name" : "Jessica Nowacky", "categories" : [] },	
+		{ "name" : "Sean Oswald", "categories" : [] },	
+		{ "name" : "Hitesh Patel", "categories" : [] },	
+		{ "name" : "Jason Pelczynski", "categories" : [] },	
+		{ "name" : "Frank Skiba", "categories" : [] },	
+		{ "name" : "Brent Snooks", "categories" : [] },	
+		{ "name" : "Brian Stroud", "categories" : [] },	
+		{ "name" : "Dina Tarika", "categories" : [] },	
+		{ "name" : "Robyn Welfare", "categories" : [] },	
+		{ "name" : "Meghan White", "categories" : [] },	
+		{ "name" : "Shaun Wilson", "categories" : [] },	
+		{ "name" : "Sarah Zych", "categories" : [] }
+
+	],
+	"category" : [
+		{
+			"name" : "Everyone",
+			"members" : null
+		},
+		{
+			"name" : "Revamp Team",
+			"members" : [
+				"Ahsana Asgar",
+				"Stephen Gardner",
+				"Amanda Halashyn",
+				"Dina Tarika"
+
+			]
+		},
+		{
+			"name" : "Everyone Else",
+			"members" : [			
+				"Michael Bosnjak",
+				"Toni Grondin",
+				"Jacques Laurin",
+				"Jessica Nowacky",
+				"Sean Oswald",
+				"Hitesh Patel",
+				"Jason Pelczynski",
+				"Frank Skiba",
+				"Brent Snooks",
+				"Brian Stroud",
+				"Robyn Welfare",
+				"Meghan White",
+				"Shaun Wilson",
+				"Sarah Zych"
+			]
+		},
+		
+		{
+			"name" : "No one",
+			"members" : []
+		}
+	]
+}
