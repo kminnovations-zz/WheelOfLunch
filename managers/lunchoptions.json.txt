@@ -31,6 +31,7 @@
 				"Ahsana Asgar",
 				"Stephen Gardner",
 				"Amanda Halashyn",
+				"Brian Stroud",
 				"Dina Tarika"
 
 			]
@@ -47,7 +48,6 @@
 				"Jason Pelczynski",
 				"Frank Skiba",
 				"Brent Snooks",
-				"Brian Stroud",
 				"Robyn Welfare",
 				"Meghan White",
 				"Shaun Wilson",
@@ -55,9 +55,5 @@
 			]
 		},
 		
-		{
-			"name" : "No one",
-			"members" : []
-		}
 	]
 }
