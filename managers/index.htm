@@ -67,12 +67,12 @@
 			if (restaurants.length > 0) {
 				// If there is no wheel yet, create it
 				if (!wheel) {
-					//wheel = new Wheel('wheelContainer');
+					wheel = new Wheel('wheelContainer');
 					//attempt to add sound
-					wheel = new Wheel('wheelContainer', restaurants,
+					/* wheel = new Wheel('wheelContainer', restaurants,
                        { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater,
                        onStartingWheel: onStartingWheel, onWheelStopped: onWheelStopped, onDrawing: onDrawing });
-                       wheel.drawWheel();
+                       wheel.drawWheel(); */ 
 				}
 				wheel.spin(restaurants);
 			}
