@@ -28,7 +28,9 @@
 			// Make an array of selected restaurants from the selection
 			var restaurants = [];
 			$('#lunchoptions .selected').each(function () {
-				restaurants.push($(this).html());
+				// comment out line that's different:
+				// restaurants.push($(this).html());
+				restaurants.push({ name : $(this).html(), weight : 1 });
 			});
 			// If there is at least one restaurant selected, spin the wheel (TODO: put this check in the wheel code)
 			if (restaurants.length > 0) {
