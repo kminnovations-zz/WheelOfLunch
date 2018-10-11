@@ -53,7 +53,7 @@
 				"Shaun Wilson",
 				"Sarah Zych"
 			]
-		},
+		}
 		
 	]
 }
