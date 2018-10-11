@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Wheel of Lunch</title>
-	 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<script type="text/javascript" src="../lib/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="../lib/jquery-ui-1.9.2.min.js"></script>
 	<script type="text/javascript" src="../lib/jquery.jSlots.min.js" charset="utf-8"></script>
@@ -10,36 +9,6 @@
 	<script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../wheeloflunch.js"></script>
 	<script type="text/javascript" src="../wheel.js"></script>
-	 <script type="text/javascript" charset="utf-8">
-	
-       <script type="text/javascript">
-               var spin_sounds = [
-                       new Audio('sound/around_the_world.mp3'),
-                       new Audio('sound/round_and_round.mp3'),
-                       new Audio('sound/round_n_round.mp3'),
-                       new Audio('sound/what_goes_around_comes_around.mp3'),
-                       new Audio('sound/when_i_come_around.mp3'),
-                       new Audio('sound/you_spin_me_right_round.mp3'),
-	
-             ];
-	
-               var win_sound = new Audio('sound/coin.wav');
-               $(document).ready(function() {
-                       $("#data").select();
-                       var ocean = document.getElementById("custom"),
-                       waveWidth = 10,
-                       waveCount = Math.floor(window.innerWidth/waveWidth),
-                       docFrag = document.createDocumentFragment();
-                       var xoffset = (window.innerWidth - waveWidth * waveCount) / 2;
-                       for(var i = 0; i < waveCount; i++){
-                       var wave = document.createElement("div");
-                       wave.className += " wave";
-                       docFrag.appendChild(wave);
-                       wave.style.left = xoffset + i * waveWidth + "px";
-                       wave.style.webkitAnimationDelay = (i/100) + "s";
-                       }
-                       ocean.appendChild(docFrag);
-               });
 	<script type="text/javascript">
 		// Check if the canvas element is supported
 		function isCanvasSupported() {
@@ -68,11 +37,6 @@
 				// If there is no wheel yet, create it
 				if (!wheel) {
 					wheel = new Wheel('wheelContainer');
-					//attempt to add sound
-					/* wheel = new Wheel('wheelContainer', restaurants,
-                       { height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater,
-                       onStartingWheel: onStartingWheel, onWheelStopped: onWheelStopped, onDrawing: onDrawing });
-                       wheel.drawWheel(); */ 
 				}
 				wheel.spin(restaurants);
 			}
@@ -151,4 +115,4 @@
 		</div>
 	</div>
 </body>
-</html>
+</html
