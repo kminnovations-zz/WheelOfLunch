@@ -17,7 +17,8 @@
 		{ "name" : "Robyn Welfare", "categories" : [] },	
 		{ "name" : "Meghan White", "categories" : [] },	
 		{ "name" : "Shaun Wilson", "categories" : [] },	
-		{ "name" : "Sarah Zych", "categories" : [] }
+		{ "name" : "Sarah Zych", "categories" : [] },
+		{ "name" : "Philip Lim", "categories" : [] }
 
 	],
 	"category" : [
@@ -51,7 +52,8 @@
 				"Robyn Welfare",
 				"Meghan White",
 				"Shaun Wilson",
-				"Sarah Zych"
+				"Sarah Zych",
+				"Philip Lim"
 			]
 		}
 		
