@@ -75,7 +75,7 @@
 				var canvas = $("canvas").get(0);
 				if (window.spins == undefined) {
 					window.spins=0;
-				}							
+				}
 			}
 			
 			var onWheelStopped = function ()
@@ -84,6 +84,7 @@
 					window.spins=0;
 				}
 				window.spins++;
+				$("#leaves").hide();
 			}
 
 			var onDrawing = function(context, radiusInner, radiusOuter, progress)
@@ -91,7 +92,7 @@
 				
 			}
 
-			var backgroundImages = ["ehs.png","cruisecartoon.png", "highfive.gif", "hawaii.gif"];
+			var backgroundImages = ["ehs.png", "thankyou.jpg", "highfive.gif", "velocityehs.png"];
 			wheel = new Wheel('wheelContainer', restaurants, 
 			{ height : 800, showProgress : false, expectLongText : false, spinSound : spin_sounds, winSound : win_sound, backgroundImages: backgroundImages, winCallback: cheater,
 			onStartingWheel: onStartingWheel, onWheelStopped: onWheelStopped, onDrawing: onDrawing });
@@ -104,12 +105,15 @@
 				$('.canvassupportwarningfade').show('blind', { direction: 'up' }, 1000);
 				$('.canvassupportwarning').show();
 			}
+
+			$("#leaves").hide();
 		});
 
 		var wheel;
 
 		// Handles a request to spin the wheel
 		function spin() {
+			$("#leaves").show();
 			wheel.spin();
 		}
 
@@ -123,7 +127,7 @@
 	<link href="wheeloflunch.css" rel="stylesheet" type="text/css" />
 </head>
 <body style="text-align: center; margin: 0px;">
-
+	<div class="background" ></div>
 	<div class="canvassupportwarning alert alert-block" style="display: none; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #666666">
 		<div class="canvassupportwarningfade" style="display: none; background-color: #f7f7f7; padding: 6px; color: red;">
 			Your browser does not support the canvas element. If you are using Internet Explorer, turn off Compatibility View.
@@ -131,7 +135,7 @@
 	</div>
 
 	<!-- The button to spin the wheel. -->
-	<input type="button" id="spin" style="margin-top: 10px;" value="GET A HIGH 5"
+	<input type="button" id="spin" style="margin-top: 10px;" value="SPIN"
 		class="btn btn-primary btn-large" onclick="spin();" />
 
 	<!-- The data entry page that is initially visible -->
@@ -152,9 +156,25 @@
 		<!-- The wheel -->
 		<div id="wheelContainer" style="padding-top: 8px;">
 		</div>
-		<img src="images/cartoon-sun.png" width='256' height='256' class="fifa top righty" />
+		<img src="images/appreciation.png" width='256' height='256' class="fifa top righty" />
 		<div id="custom"></div>
 	</div>
-
+	<div id="leaves">
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i> 
+	  </div>
 </body>
 </html>
