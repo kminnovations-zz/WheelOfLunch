@@ -1,0 +1,17 @@
+{
+  "lunchoption" : [
+		{ "name" : "The Guessing Game", "categories" : [] },	
+		{ "name" : "The Story", "categories" : [] },	
+		{ "name" : "The Mad Lib", "categories" : [] },	
+		{ "name" : "RPS Tournament", "categories" : [] },	
+		{ "name" : "The Movie & TV Game", "categories" : [] },	
+		{ "name" : "The Scavenger Hunt", "categories" : [] },	
+	],
+	"category" : [
+		{
+			"name" : "Everyone",
+			"members" : null
+		}
+		
+	]
+}

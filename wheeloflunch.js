@@ -4,8 +4,10 @@ var optionData;
 
 $(document).ready(function () {
 
+	var optionsName = getUrlParameter("options") || "lunchoptions";
+
 	var folderLocation = window.location.pathname;
-	var optionsLocation = folderLocation.substring(0, folderLocation.lastIndexOf('/')) + '/lunchoptions.json.txt';
+	var optionsLocation = folderLocation.substring(0, folderLocation.lastIndexOf('/')) + '/' + optionsName + '.json.txt';
 
 	// Get the data that describes the options
 	$.getJSON(optionsLocation, function (data) {
@@ -113,3 +115,10 @@ function enableWheel() {
 		number: $('#optionlist li').length
 	});
 }
+
+function getUrlParameter(name) {
+	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+	var results = regex.exec(location.search);
+	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
