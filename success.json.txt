@@ -1,5 +1,6 @@
 {
-  "lunchoption" : [
+	"name": "Wheel of Customer Success Anniversaries",
+	"lunchoption" : [
 		{ "name" : "The Guessing Game", "categories" : [] },	
 		{ "name" : "The Story", "categories" : [] },	
 		{ "name" : "The Mad Lib", "categories" : [] },	
@@ -9,7 +10,7 @@
 	],
 	"category" : [
 		{
-			"name" : "Everyone",
+			"name" : "All",
 			"members" : null
 		}
 		

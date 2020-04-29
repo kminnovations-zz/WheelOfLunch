@@ -1,5 +1,5 @@
 {
-  "lunchoption" : [
+	"lunchoption" : [
 		{ "name" : "Ahsana Asgar", "categories" : [] },	
 		{ "name" : "Michael Bosnjak", "categories" : [] },	
 		{ "name" : "Stephen Gardner", "categories" : [] },	

@@ -13,6 +13,11 @@ $(document).ready(function () {
 	$.getJSON(optionsLocation, function (data) {
 		optionData = data;
 
+		if (data.name !== null) {
+			$(document).prop('title', data.name);
+			$("#wheelname").text(data.name);
+		}
+
 		// Add each option to the appropriate section
 		$.each(data.lunchoption, function () {
 			$('#lunchoptions').append('<div class="option">' + this.name + '</div>');
@@ -21,16 +26,20 @@ $(document).ready(function () {
 		// Set the click handler for each option to toggle selection
 		$('#lunchoptions .option').click(function () { $(this).toggleClass('selected'); });
 
-		// Add each category to the appropriate section
-		$.each(data.category, function () {
-			$('#categories').append('<div class="option">' + this.name + '</div>');
-		});
+		if (data.category !== null && data.category.length > 0) {
+			// Add each category to the appropriate section
+			$.each(data.category, function () {
+				$('#categories').append('<div class="option">' + this.name + '</div>');
+			});
+		} else {
+			$('#categoriesContainer').hide();
+		}
 
 		// Set the click handler for each category to call the category selection function
 		$('#categories .option').click(function () {
 			var category = $(this).html();
 
-			if (category == 'All' || category == 'Clear') {
+			if (category === 'All' || category === 'Clear') {
 				$('#categories .option').each(function () {
 					$(this).removeClass('selected');
 				});
