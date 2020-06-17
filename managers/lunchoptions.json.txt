@@ -17,7 +17,8 @@
 		{ "name" : "Meghan White", "categories" : [] },	
 		{ "name" : "Shaun Wilson", "categories" : [] },	
 		{ "name" : "Sarah Zych", "categories" : [] },
-		{ "name" : "Philip Lim", "categories" : [] }
+		{ "name" : "Philip Lim", "categories" : [] },
+		{"name" : "Tanzi Lee Kosten", "categories" : [] }
 
 	],
 	"category" : [
@@ -52,7 +53,8 @@
 				"Shaun Wilson",
 				"Sarah Zych",
 				"Philip Lim",
-				"Julie Hand"
+				"Julie Hand",
+				"Tanzi Lee Kosten"
 			]
 		}
 		
